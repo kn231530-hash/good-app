@@ -1,0 +1,6 @@
+{
+  "name": "Highland Epicure",
+  "description": "A high-tier digital culinary & food delivery platform for Gilgit-Baltistan featuring authentic Karakoram cuisine, real-time alpine order tracking, and curated regional dining.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

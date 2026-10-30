@@ -1,0 +1,221 @@
+---
+name: Highland Epicure
+colors:
+  surface: '#faf8ff'
+  surface-dim: '#d2d9f4'
+  surface-bright: '#faf8ff'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f2f3ff'
+  surface-container: '#eaedff'
+  surface-container-high: '#e2e7ff'
+  surface-container-highest: '#dae2fd'
+  on-surface: '#131b2e'
+  on-surface-variant: '#5a4136'
+  inverse-surface: '#283044'
+  inverse-on-surface: '#eef0ff'
+  outline: '#8e7164'
+  outline-variant: '#e2bfb0'
+  surface-tint: '#a04100'
+  primary: '#a04100'
+  on-primary: '#ffffff'
+  primary-container: '#ff6b00'
+  on-primary-container: '#572000'
+  inverse-primary: '#ffb693'
+  secondary: '#ba0035'
+  on-secondary: '#ffffff'
+  secondary-container: '#e21e49'
+  on-secondary-container: '#fffbff'
+  tertiary: '#006c49'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#00ae78'
+  on-tertiary-container: '#003925'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#ffdbcc'
+  primary-fixed-dim: '#ffb693'
+  on-primary-fixed: '#351000'
+  on-primary-fixed-variant: '#7a3000'
+  secondary-fixed: '#ffdada'
+  secondary-fixed-dim: '#ffb3b6'
+  on-secondary-fixed: '#40000c'
+  on-secondary-fixed-variant: '#920028'
+  tertiary-fixed: '#6ffbbe'
+  tertiary-fixed-dim: '#4edea3'
+  on-tertiary-fixed: '#002113'
+  on-tertiary-fixed-variant: '#005236'
+  background: '#faf8ff'
+  on-background: '#131b2e'
+  surface-variant: '#dae2fd'
+typography:
+  headline-xl:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 40px
+    fontWeight: '800'
+    lineHeight: 48px
+    letterSpacing: -0.03em
+  headline-xl-mobile:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 30px
+    fontWeight: '800'
+    lineHeight: 36px
+    letterSpacing: -0.02em
+  headline-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 28px
+    fontWeight: '700'
+    lineHeight: 34px
+    letterSpacing: -0.02em
+  headline-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 22px
+    fontWeight: '700'
+    lineHeight: 28px
+    letterSpacing: -0.01em
+  headline-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 24px
+    letterSpacing: 0em
+  body-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 24px
+    letterSpacing: 0em
+  body-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 20px
+    letterSpacing: 0em
+  body-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 16px
+    letterSpacing: 0.01em
+  label-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '600'
+    lineHeight: 20px
+    letterSpacing: 0.01em
+  label-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '600'
+    lineHeight: 16px
+    letterSpacing: 0.02em
+  label-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 10px
+    fontWeight: '700'
+    lineHeight: 14px
+    letterSpacing: 0.04em
+  currency-display:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 20px
+    fontWeight: '800'
+    lineHeight: 24px
+    letterSpacing: -0.01em
+rounded:
+  sm: 0.25rem
+  DEFAULT: 0.5rem
+  md: 0.75rem
+  lg: 1rem
+  xl: 1.5rem
+  full: 9999px
+spacing:
+  gutter: 1rem
+  gutter-desktop: 1.5rem
+  margin: 1rem
+  margin-tablet: 1.5rem
+  margin-desktop: 2.5rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2rem
+---
+
+## Brand & Style
+
+This design system establishes a high-tier, appetite-stimulating digital culinary platform tailored to the rugged, breathtaking northern crossroads of Gilgit-Baltistan. Merging the intuitive speed of Tier-1 global delivery platforms with hyper-localized regional hospitality, the aesthetic rejects the cluttered, discount-heavy chaos of legacy delivery tools in favor of luminous culinary curation.
+
+The interface pairs pristine alpine clarity with warm, aromatic energy:
+- **Atmosphere:** Clean, open, and airy. The canvas relies on crisp white fields and pure slate tones, framing culinary photography like an editorial food journal.
+- **Warmth & Appetite:** Saffron orange and fiery chili accents ignite craving and guide immediate transaction without causing visual exhaustion.
+- **Trust & Origin:** Precision emerald badges provide instantaneous recognition for 100% Halal certification, organic northern produce, and live delivery status.
+- **Form Language:** Curated tactile modernism. Gentle pill structures, soft-cornered imagery cards, and layered ambient depth make thumb-driven browsing fluid on mobile devices navigating patchy highland 4G networks.
+
+## Colors
+
+The palette balances mouth-watering warmth against clinical functional clarity:
+
+- **Primary (`#FF6B00` - Warm Saffron):** The signature brand identity color. Applied to primary calls-to-action, checkout actions, active tab indicators, and essential navigation anchors.
+- **Secondary (`#E11D48` - Kashmiri Chili):** High-urgency accent used selectively for discounts, limited-quantity badges, favorites/likes, and critical order warnings.
+- **Tertiary (`#10B981` - Emerald Valley):** Dedicated strictly to dietary markers (Halal certified, pure vegetarian, farm-to-table labels), driver location beacons, and successful transaction states.
+- **Neutral Core (`#0F172A` - Charcoal Slate):** The bedrock anchor for headlines, price metrics, and deep contrast text. Supported by intermediate slate (`#64748B`) for secondary metadata and subtitles.
+- **Surfaces (`#FFFFFF` to `#F8FAFC`):** Pure optical whites for elevated cards, layered over subtle slate-tinted canvas backdrops to establish soft boundaries without relying on heavy borders.
+
+## Typography
+
+Plus Jakarta Sans governs the typography scale, selected for its tall x-height, open apertures, and geometric clarity that retains legibility across budget smartphone screens and intense outdoor daylight.
+
+- **Pakistani Rupee (PKR) Formatting:** Monetary amounts must always be set in semi-bold or extra-bold weights (`currency-display`). The currency indicator `Rs.` or `PKR` renders at 75% visual size of the numeral and scales inline to prevent decimal and price ambiguity.
+- **Bi-Directional & Bilingual Harmony:** Line heights are maintained generously (minimum 1.4x for body copy) to allow simultaneous pairing with standard system Nastaliq/Urdu scripts without clipping ascending or descending glyphs.
+- **Visual Weighting:** Product titles favor bold weights to anchor scanning, while ingredients and vendor descriptions drop back to regular weights with slate-gray tones to prevent cognitive overload.
+
+## Layout & Spacing
+
+The layout utilizes a fluid responsive grid built on an absolute 4px/8px incremental base:
+
+- **Mobile Viewports (<640px):** Single-column stream with edge margins locked at `1rem` (`16px`). Horizontal dish rails and filter carousels bleed directly off-canvas with negative margins, inviting horizontal thumb swipes.
+- **Tablet Viewports (640px–1024px):** 6-column grid with `1.5rem` (`24px`) margins and gutters. Adapts product lists into 2-column cards.
+- **Desktop Viewports (>1024px):** 12-column grid capped at a maximum container width of `1280px` centered on the viewport. Restaurant details and cart/checkout drawers split into a 8:4 desktop asymmetric layout.
+- **Vertical Rhythm:** Elements within cards cluster with `space-xs` and `space-sm`. Discrete card components stack with `space-md`. Entire thematic discovery bands (e.g., "Trending in Jutial", "Traditional Balti Delicacies") separate cleanly using `space-xl`.
+
+## Elevation & Depth
+
+Visual hierarchy is established through a combination of crisp atmospheric surfaces and warm, sunlit drop shadows rather than heavy lines.
+
+- **Level 0 (Base Canvas):** `#F8FAFC`. The foundational backdrop for the browsing experience.
+- **Level 1 (Card & Content Blocks):** `#FFFFFF` surface accompanied by a subtle ambient drop shadow: `0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03)`. This gives vendors and dishes distinct lift without visual clutter.
+- **Level 2 (Interactive Flyouts & Floating Actions):** Floating add-to-cart bars, search headers, and sticky delivery filters carry a warmed ambient shadow: `0 12px 24px -4px rgba(255, 107, 0, 0.12), 0 4px 8px -2px rgba(15, 23, 42, 0.06)`.
+- **Level 3 (Modals & Sheet Drawers):** Bottom-sheet dish customization modals utilize a deep shadow: `0 24px 48px -12px rgba(15, 23, 42, 0.25)` over a 40% opacity slate blur (`backdrop-filter: blur(8px)`).
+- **Hairlines:** Where physical demarcation is mandatory, use an ultra-subtle border: `1px solid rgba(226, 232, 240, 0.8)`. Never use harsh pure black or dark gray rules.
+
+## Shapes
+
+The interface embraces a modern, friendly geometry balancing structured cards with organic, pill-shaped affordances:
+
+- **Cards & Visual Containers (`rounded-lg`, 16px):** Restaurant preview tiles, food imagery masks, and notification banners utilize smooth 16px corner radii to establish an inviting, modern container.
+- **Interactive Controls & Badges (`rounded-pill`, 9999px):** All buttons, category filter chips, Halal/Veg markers, counter steppers, and rating indicators adopt complete pill rounding. This provides high tactile affordance and clear touch targets.
+- **Input Fields & Modal Sheets (`rounded-md`, 8px to 12px):** Form fields, address inputs, and voucher fields maintain tighter corners for structural stability, while mobile bottom sheets curve exclusively at their top edges with 24px radii.
+
+## Components
+
+### Buttons
+- **Primary:** Full Saffron Orange (`#FF6B00`) background, crisp white typography (`label-lg`), pill-shaped, height 48px on mobile for effortless thumb tap targets. Mild scale-down press effect (`active:scale-98`).
+- **Secondary:** Surface white with a 1.5px border of slate-200 (`#E2E8F0`), charcoal slate text.
+- **Floating Cart CTA:** Full-width mobile pinned bar with dual information split: aggregate items & price on the left, "View Basket" with directional chevron on the right.
+
+### Chips & Filters
+- Compact pill-shaped elements (36px height). Inactive state: `#FFFFFF` background with `#E2E8F0` hairline border and slate text. Active state: `#0F172A` background with crisp white text, or subtle `#FF6B00` 10% opacity tint with `#FF6B00` text for active category filters.
+
+### Badges & Dietary Tags
+- **Halal & Veg Indicators:** Emerald green tint background (`#ECFDF5`), bold emerald text (`#047857`), micro-padding (`4px 8px`), fully pill-rounded with custom vector leaf or crescent iconography.
+- **Special Offers:** Chili red tint background (`#FFF1F2`), chili red text (`#E11D48`), highlighting discounts (e.g., "20% OFF").
+
+### Food & Restaurant Cards
+- **Merchant Card:** Prominent 16:9 aspect ratio hero image container with 16px top border radii. Floating rating badge (amber star + bold score) overlaid on image corner. Bottom metadata section displays delivery time (e.g., "25-35 mins"), minimum order, and distance.
+- **Menu Item Card:** Horizontal split pattern on mobile: food title, price in PKR (`currency-display`), and description on the left; square 1:1 rounded image container (88x88px) on the right with an overlapping pill-shaped "+" add button.
+
+### Form Inputs
+- 48px height with a solid light background (`#F8FAFC`), transitioning to a crisp pure white background with a 1.5px `#FF6B00` border upon active focus state. Left-aligned localized icons (search magnifying glass, delivery pin, phone dial code).
+
+### Order Status Tracker
+- Stepped linear timeline with pulsating emerald status dot, real-time rider coordinates display card, and high-contrast call driver/support shortcuts.
