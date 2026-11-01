@@ -44,6 +44,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Top Badges */}
         <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1 items-start">
+          {product.dealBadge && (
+            <span className="bg-amber-500 text-slate-950 font-extrabold text-[10px] px-2.5 py-0.5 rounded-full shadow-md">
+              ⚡ {product.dealBadge}
+            </span>
+          )}
           {product.isChefSpecial && <ChefSpecialBadge />}
           {product.isBestSeller && <BestSellerBadge />}
         </div>
@@ -76,17 +81,27 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Content Section */}
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
-          {/* Dietary Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 mb-2">
-            {product.isOrganic && <OrganicBadge size="sm" />}
-            {product.isVegan && <VeganBadge size="sm" />}
-            {product.isGlutenFree && <GlutenFreeBadge size="sm" />}
+          {/* Outlet & Category */}
+          <div className="flex items-center justify-between gap-2 mb-1.5">
+            <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full truncate">
+              📍 {product.outletName || product.category}
+            </span>
+            <span className="text-[10px] font-bold text-slate-400">
+              {product.category}
+            </span>
           </div>
 
-          {/* Product Title */}
-          <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-emerald-700 transition-colors line-clamp-1">
-            {product.name}
-          </h3>
+          {/* Product Title & Urdu local name */}
+          <div className="flex items-baseline justify-between gap-2">
+            <h3 className="text-base font-extrabold text-[#0F172A] group-hover:text-emerald-700 transition-colors line-clamp-1">
+              {product.name}
+            </h3>
+            {product.localName && (
+              <span className="text-xs font-bold text-slate-400 shrink-0">
+                {product.localName}
+              </span>
+            )}
+          </div>
 
           {/* Tagline / Subtitle */}
           <p className="text-xs text-slate-500 mt-0.5 line-clamp-1 font-medium">

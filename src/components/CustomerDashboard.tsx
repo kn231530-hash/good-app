@@ -117,9 +117,9 @@ export const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
             </span>
           </div>
           <div className="bg-[#F8FAFC] p-3 rounded-2xl border border-slate-100">
-            <span className="text-xs text-slate-400 block font-semibold">Saved $</span>
-            <span className="text-lg font-extrabold text-emerald-700">
-              $35.00
+            <span className="text-xs text-slate-400 block font-semibold">Total Saved</span>
+            <span className="text-base font-extrabold text-emerald-700">
+              Rs. 450
             </span>
           </div>
         </div>
@@ -402,6 +402,7 @@ export const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
                       id: `addr-${Date.now()}`,
                       title: newAddressTitle,
                       address: newAddressText,
+                      region: customer.selectedRegion || 'Gilgit City',
                       type: 'Other',
                       isDefault: false
                     });

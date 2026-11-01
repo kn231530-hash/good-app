@@ -78,7 +78,7 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
     {
       id: 'msg-1',
       sender: 'assistant',
-      text: "👋 Hi there! I'm BiteBot, your personal Fresh Bite food & nutrition assistant. I can help you find meals by calories, dietary needs, check order status, or suggest chef favorites. What are you craving today?",
+      text: "👋 Assalam-o-Alaikum! Main hoon Chaska AI (Oderela Router). Aap casual Urdu ya English mein kuch bhi likhein — jaise 'bhai 2 zinger or loaded fries', 'large fajita pizza deal', ya 'doodh aur chai' — main foran open outlets se match karke order prepare kar doonga!",
       timestamp: 'Just now'
     }
   ]);
@@ -107,14 +107,14 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
     setTimeout(() => {
       generateBotResponse(query);
       setIsTyping(false);
-    }, 600);
+    }, 500);
   };
 
   const generateBotResponse = (query: string) => {
     const lower = query.toLowerCase();
 
     // 1. Order status query
-    if (lower.includes('track') || lower.includes('order') || lower.includes('status') || lower.includes('where is')) {
+    if (lower.includes('track') || lower.includes('order') || lower.includes('status') || lower.includes('kahan') || lower.includes('rider') || lower.includes('where')) {
       const activeOrder = orders.find((o) => o.status !== 'delivered' && o.status !== 'cancelled') || orders[0];
       if (activeOrder) {
         setMessages((prev) => [
@@ -131,62 +131,94 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
       }
     }
 
-    // 2. High Protein
-    if (lower.includes('protein') || lower.includes('gym') || lower.includes('workout') || lower.includes('salmon')) {
-      const matched = products.filter((p) => p.protein >= 35);
+    // 2. Zinger / Burger / Fries
+    if (lower.includes('zinger') || lower.includes('burger') || lower.includes('fries') || lower.includes('crunch')) {
+      const matched = products.filter((p) => p.id === 'chaska-1' || p.id === 'chaska-4');
       setMessages((prev) => [
         ...prev,
         {
           id: `msg-${Date.now()}`,
           sender: 'assistant',
-          text: `💪 Here are our top high-protein meals with over 35g of lean protein to fuel your day:`,
+          text: `🍔 Zinger craving sorted! Yeh raha hamara top-rated **Chaska Crispy Zinger** aur **Cheesy Loaded Fries** (Chaska Fast Food Hub Jutial se):`,
           timestamp: 'Just now',
-          recommendedProducts: matched.slice(0, 2)
+          recommendedProducts: matched
         }
       ]);
       return;
     }
 
-    // 3. Low Calorie / Clean
-    if (lower.includes('low calorie') || lower.includes('diet') || lower.includes('light') || lower.includes('salad') || lower.includes('500')) {
-      const matched = products.filter((p) => p.calories <= 450);
+    // 3. Pizza / Deal
+    if (lower.includes('pizza') || lower.includes('fajita') || lower.includes('deal') || lower.includes('midnight')) {
+      const matched = products.filter((p) => p.id === 'chaska-2' || p.id === 'chaska-3');
       setMessages((prev) => [
         ...prev,
         {
           id: `msg-${Date.now()}`,
           sender: 'assistant',
-          text: `🥗 These light, guilt-free dishes stay strictly under 450 calories while being packed with micronutrients:`,
+          text: `🍕 Zabardast pizza deals available! Royal Crust Gilgit ka **Large 13" Chicken Fajita** ya **Midnight Mega Deal** check karein:`,
           timestamp: 'Just now',
-          recommendedProducts: matched.slice(0, 2)
+          recommendedProducts: matched
         }
       ]);
       return;
     }
 
-    // 4. Vegan / Plant Based
-    if (lower.includes('vegan') || lower.includes('plant') || lower.includes('vegetarian')) {
-      const matched = products.filter((p) => p.isVegan);
+    // 4. Chapshuro / Local Northern Cuisine
+    if (lower.includes('chapshuro') || lower.includes('local') || lower.includes('gilgit') || lower.includes('hunza')) {
+      const matched = products.filter((p) => p.id === 'chaska-7');
       setMessages((prev) => [
         ...prev,
         {
           id: `msg-${Date.now()}`,
           sender: 'assistant',
-          text: `🌱 100% plant-based and cruelty-free! Check out these customer favorites:`,
+          text: `🫓 Wah! Karakoram Heritage Kitchen ka authentic stone-baked **Gilgiti Chapshuro** fresh tawa se ready ho raha hai:`,
           timestamp: 'Just now',
-          recommendedProducts: matched.slice(0, 2)
+          recommendedProducts: matched
         }
       ]);
       return;
     }
 
-    // 5. Discount / Coupon query
-    if (lower.includes('discount') || lower.includes('promo') || lower.includes('coupon') || lower.includes('code') || lower.includes('deal')) {
+    // 5. Biryani / Roll / Desi
+    if (lower.includes('biryani') || lower.includes('chawal') || lower.includes('roll') || lower.includes('desi') || lower.includes('paratha')) {
+      const matched = products.filter((p) => p.id === 'chaska-8' || p.id === 'chaska-9');
       setMessages((prev) => [
         ...prev,
         {
           id: `msg-${Date.now()}`,
           sender: 'assistant',
-          text: `🎟️ You can use coupon **FRESH2026** for $5 OFF orders above $25, or **SMARTBITE** for 15% OFF your entire basket!`,
+          text: `🍛 Hot & fresh desi khana! Al-Madina **Chicken Dum Biryani** aur Roll Express ka **Chicken Garlic Mayo Paratha Roll**:`,
+          timestamp: 'Just now',
+          recommendedProducts: matched
+        }
+      ]);
+      return;
+    }
+
+    // 6. Doodh / Chai / Mart
+    if (lower.includes('doodh') || lower.includes('milk') || lower.includes('chai') || lower.includes('tea') || lower.includes('rusk') || lower.includes('mart')) {
+      const matched = products.filter((p) => p.id === 'chaska-10' || p.id === 'chaska-11');
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `msg-${Date.now()}`,
+          sender: 'assistant',
+          text: `🥛 Oderela Instant Mart se 1 Litre pure farm milk aur Chaska Chai Khana ki Karak Doodh Patti ready hai:`,
+          timestamp: 'Just now',
+          recommendedProducts: matched
+        }
+      ]);
+      return;
+    }
+
+    // 7. Discount / Coupon query
+    if (lower.includes('discount') || lower.includes('promo') || lower.includes('coupon') || lower.includes('code') || lower.includes('deal') || lower.includes('off')) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `msg-${Date.now()}`,
+          sender: 'assistant',
+          text: `🎟️ Special Oderela Chaska Vouchers:\n• **CHASKA50**: Rs. 150 OFF (min order Rs. 800)\n• **ODERELA**: Rs. 200 OFF Northern Express Delivery\n• **ZINGER**: Rs. 100 OFF Zinger Meals!`,
           timestamp: 'Just now'
         }
       ]);
@@ -200,7 +232,7 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
       {
         id: `msg-${Date.now()}`,
         sender: 'assistant',
-        text: `I'd love to help you with "${query}". Here are two of our most ordered chef specialties right now that you might enjoy:`,
+        text: `Maine aapka message samjh liya! Yeh do items Gilgit aur Gahkuch mein top trending hain:`,
         timestamp: 'Just now',
         recommendedProducts: topPicks
       }

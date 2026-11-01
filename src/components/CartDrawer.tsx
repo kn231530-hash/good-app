@@ -40,16 +40,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   if (!isOpen) return null;
 
   const [promoCode, setPromoCode] = useState('');
-  const [appliedPromo, setAppliedPromo] = useState<string | null>('FRESH2026');
-  const [courierTip, setCourierTip] = useState<number>(3.00);
+  const [appliedPromo, setAppliedPromo] = useState<string | null>('CHASKA50');
+  const [courierTip, setCourierTip] = useState<number>(50);
   const [ecoPackaging, setEcoPackaging] = useState<boolean>(true);
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState('Apple Pay / Digital Wallet');
+  const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery (COD)');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const subtotal = cart.reduce((sum, item) => sum + item.totalPrice, 0);
-  const deliveryFee = subtotal > 40 ? 0 : 2.99;
-  const ecoFee = ecoPackaging ? 0.99 : 0;
+  const deliveryFee = subtotal > 1500 ? 0 : 99;
+  const ecoFee = ecoPackaging ? 30 : 0;
 
   // Calculate voucher savings
   let discount = 0;
@@ -72,7 +72,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       setAppliedPromo(clean);
       setPromoCode('');
     } else {
-      alert('Invalid Promo code. Try FRESH2026 ($5 off) or SMARTBITE (15% off)');
+      alert('Invalid Promo code. Try CHASKA50 (Rs. 50 off), ODERELA (15% off), or ZINGER (Rs. 80 off)');
     }
   };
 
@@ -97,15 +97,18 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     } catch (e) {}
 
     setTimeout(() => {
-      const address = customer.savedAddresses[selectedAddressIndex]?.address || 'Primary Residence, Metro District';
+      const addressObj = customer.savedAddresses[selectedAddressIndex];
+      const address = addressObj?.address || 'Jutial Officers Colony, Gilgit';
+      const region = addressObj?.region || customer.selectedRegion || 'Gilgit City';
       const newOrder: Order = {
-        id: `FB-${Math.floor(1000 + Math.random() * 9000)}`,
+        id: `CHASKA-${Math.floor(1000 + Math.random() * 9000)}`,
         createdAt: 'Just now',
         status: 'confirmed',
         items: [...cart],
         customerName: customer.name,
         customerPhone: customer.phone,
         deliveryAddress: address,
+        region,
         paymentMethod,
         subtotal,
         deliveryFee,
@@ -281,11 +284,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {/* Courier Tip */}
             <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-bold text-[#0F172A]">Courier Delivery Tip</span>
-                <span className="text-[10px] text-slate-500">100% goes to driver</span>
+                <span className="text-xs font-bold text-[#0F172A]">Rider Fuel & Delivery Tip</span>
+                <span className="text-[10px] text-slate-500">100% goes to your rider</span>
               </div>
               <div className="flex items-center gap-2">
-                {[0, 2, 3, 5, 7].map((tip) => (
+                {[0, 50, 100, 150, 200].map((tip) => (
                   <button
                     key={tip}
                     type="button"
@@ -296,7 +299,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300'
                     }`}
                   >
-                    {tip === 0 ? 'None' : `$${tip}`}
+                    {tip === 0 ? 'None' : `Rs. ${tip}`}
                   </button>
                 ))}
               </div>
@@ -309,8 +312,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="text-xs font-bold text-[#0F172A]">100% Biodegradable Packaging</h5>
-                  <p className="text-[11px] text-slate-500">Plant-fiber container + cornstarch utensils</p>
+                  <h5 className="text-xs font-bold text-[#0F172A]">Thermal Insulation & Safe Pack</h5>
+                  <p className="text-[11px] text-slate-500">Keeps food piping hot during rider journey</p>
                 </div>
               </div>
               <button
@@ -332,12 +335,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             <div className="p-3.5 bg-white rounded-2xl border border-slate-200">
               <div className="flex items-center gap-1.5 text-xs font-bold text-[#0F172A] mb-2">
                 <Tag className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Promo Voucher Code</span>
+                <span>Oderela Chaska Voucher</span>
               </div>
               <div className="flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="e.g. FRESH2026 or SMARTBITE"
+                  placeholder="e.g. CHASKA50, ODERELA, ZINGER"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                   className="flex-1 h-9 px-3 text-xs bg-[#F8FAFC] border border-slate-200 rounded-xl uppercase font-bold outline-none focus:border-emerald-600"
@@ -362,7 +365,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </div>
                   <button
                     onClick={() => setAppliedPromo(null)}
-                    className="text-slate-400 hover:text-rose-500 font-bold ml-2"
+                    className="text-slate-400 hover:text-rose-500 font-bold ml-2 cursor-pointer"
                   >
                     Remove
                   </button>
@@ -375,16 +378,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               <h5 className="text-xs font-bold text-[#0F172A] mb-2">Payment Method</h5>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 {[
-                  { name: 'Apple Pay / Digital Wallet', icon: '' },
-                  { name: 'Credit/Debit Card (••4242)', icon: '💳' },
-                  { name: 'Cash on Delivery', icon: '💵' },
-                  { name: 'Fresh Loyalty Balance', icon: '✨' }
+                  { name: 'Cash on Delivery (COD)', icon: '💵' },
+                  { name: 'JazzCash / EasyPaisa', icon: '📱' },
+                  { name: 'Debit / Credit Card', icon: '💳' },
+                  { name: 'Oderela Chaska Wallet', icon: '✨' }
                 ].map((pm) => (
                   <button
                     key={pm.name}
                     type="button"
                     onClick={() => setPaymentMethod(pm.name)}
-                    className={`p-2 rounded-xl border text-left flex items-center gap-1.5 truncate ${
+                    className={`p-2 rounded-xl border text-left flex items-center gap-1.5 truncate cursor-pointer ${
                       paymentMethod === pm.name
                         ? 'border-emerald-600 bg-emerald-50/60 font-bold text-[#0F172A]'
                         : 'border-slate-200 text-slate-600 hover:border-slate-300'
@@ -404,29 +407,29 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <Currency amount={subtotal} size="sm" />
               </div>
               <div className="flex justify-between text-slate-600">
-                <span>Fast Delivery</span>
-                <span>{deliveryFee === 0 ? 'FREE' : `$${deliveryFee.toFixed(2)}`}</span>
+                <span>Rider Delivery Fee</span>
+                <span>{deliveryFee === 0 ? 'FREE' : `Rs. ${deliveryFee}`}</span>
               </div>
               {ecoPackaging && (
                 <div className="flex justify-between text-slate-600">
-                  <span>Eco Packaging</span>
+                  <span>Safe Packaging</span>
                   <Currency amount={ecoFee} size="sm" />
                 </div>
               )}
               {courierTip > 0 && (
                 <div className="flex justify-between text-slate-600">
-                  <span>Courier Tip</span>
+                  <span>Rider Tip</span>
                   <Currency amount={courierTip} size="sm" />
                 </div>
               )}
               {discount > 0 && (
                 <div className="flex justify-between text-emerald-700 font-bold">
                   <span>Discount ({appliedPromo})</span>
-                  <span>-${discount.toFixed(2)}</span>
+                  <span>-Rs. {discount.toFixed(0)}</span>
                 </div>
               )}
               <div className="pt-2 border-t border-slate-200 flex justify-between items-baseline font-extrabold text-[#0F172A]">
-                <span className="text-sm">Total</span>
+                <span className="text-sm">Grand Total (COD)</span>
                 <Currency amount={grandTotal} size="xl" className="text-emerald-700" />
               </div>
             </div>

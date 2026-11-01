@@ -43,8 +43,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // New Product Form State
   const [newName, setNewName] = useState('');
   const [newTagline, setNewTagline] = useState('');
-  const [newCategory, setNewCategory] = useState<Product['category']>('Bowls & Salads');
-  const [newPrice, setNewPrice] = useState(14.50);
+  const [newCategory, setNewCategory] = useState<Product['category']>('Zingers & Burgers');
+  const [newPrice, setNewPrice] = useState(550);
   const [newCalories, setNewCalories] = useState(480);
   const [newProtein, setNewProtein] = useState(32);
   const [newImage, setNewImage] = useState('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80');
@@ -71,6 +71,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       calories: newCalories,
       protein: newProtein,
       prepTime: '15-20 min',
+      isHalal: true,
       isOrganic: true,
       isVegan: false,
       isGlutenFree: true,
@@ -78,7 +79,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       isChefSpecial: true,
       inStock: true,
       stockCount: 20,
-      tags: ['Chef Special', 'Fresh 2026']
+      tags: ['Chef Special', 'Chaska Deal']
     };
 
     onAddProduct(newProd);
@@ -461,19 +462,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     onChange={(e) => setNewCategory(e.target.value as any)}
                     className="w-full h-9 px-2 rounded-xl border border-slate-200 outline-none"
                   >
-                    <option value="Bowls & Salads">Bowls & Salads</option>
-                    <option value="Artisanal Pizzas">Artisanal Pizzas</option>
-                    <option value="Gourmet Burgers">Gourmet Burgers</option>
-                    <option value="Smoothies & Juices">Smoothies & Juices</option>
-                    <option value="Chef Specials">Chef Specials</option>
-                    <option value="Healthy Treats">Healthy Treats</option>
+                    <option value="Zingers & Burgers">Zingers & Burgers</option>
+                    <option value="Pizzas & Deals">Pizzas & Deals</option>
+                    <option value="Fried Chicken & Wings">Fried Chicken & Wings</option>
+                    <option value="Desi & Rolls">Desi & Rolls</option>
+                    <option value="Marts & Beverages">Marts & Beverages</option>
+                    <option value="Bakery & Sweets">Bakery & Sweets</option>
                   </select>
                 </div>
                 <div>
-                  <label className="font-bold text-slate-700 block mb-1">Price ($)</label>
+                  <label className="font-bold text-slate-700 block mb-1">Price (Rs.)</label>
                   <input
                     type="number"
-                    step="0.1"
+                    step="10"
                     value={newPrice}
                     onChange={(e) => setNewPrice(parseFloat(e.target.value))}
                     className="w-full h-9 px-3 rounded-xl border border-slate-200 outline-none"

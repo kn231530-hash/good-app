@@ -1,10 +1,20 @@
+export type ProductCategory = 
+  | 'Zingers & Burgers' 
+  | 'Pizzas & Deals' 
+  | 'Fried Chicken & Wings' 
+  | 'Desi & Rolls' 
+  | 'Bowls & Salads' 
+  | 'Marts & Beverages' 
+  | 'Bakery & Sweets';
+
 export interface Product {
   id: string;
   name: string;
+  localName?: string; // Urdu script name e.g. "چکن زنگر برگر"
   tagline: string;
   description: string;
-  category: 'Bowls & Salads' | 'Artisanal Pizzas' | 'Gourmet Burgers' | 'Smoothies & Juices' | 'Chef Specials' | 'Healthy Treats';
-  price: number;
+  category: ProductCategory;
+  price: number; // in PKR (Rs.)
   originalPrice?: number;
   image: string;
   rating: number;
@@ -12,14 +22,17 @@ export interface Product {
   calories: number;
   protein: number; // in grams
   prepTime: string;
-  isOrganic: boolean;
-  isVegan: boolean;
-  isGlutenFree: boolean;
+  outletName?: string; // local partner restaurant/mart
+  isOrganic?: boolean;
+  isHalal: boolean;
+  isVegan?: boolean;
+  isGlutenFree?: boolean;
   isBestSeller: boolean;
   isChefSpecial: boolean;
   inStock: boolean;
   stockCount: number;
   tags: string[];
+  dealBadge?: string; // e.g. "Chaska Deal", "Save Rs. 150"
   customizationOptions?: {
     sizes?: { name: string; priceDelta: number }[];
     spiceLevels?: string[];
@@ -62,6 +75,7 @@ export interface Order {
   customerName: string;
   customerPhone: string;
   deliveryAddress: string;
+  region: string; // e.g. "Gilgit (Jutial)", "Gahkuch", "Aliabad"
   paymentMethod: string;
   subtotal: number;
   deliveryFee: number;
@@ -81,10 +95,12 @@ export interface CustomerProfile {
   avatar: string;
   tier: 'Gold Gourmet' | 'Silver Epicure' | 'Green Member';
   loyaltyPoints: number;
+  selectedRegion: string;
   savedAddresses: {
     id: string;
     title: string;
     address: string;
+    region: string;
     type: 'Home' | 'Work' | 'Other';
     isDefault: boolean;
   }[];
@@ -99,8 +115,8 @@ export interface ChatMessage {
   text: string;
   timestamp: string;
   recommendedProducts?: Product[];
-  actionType?: 'add_to_cart' | 'track_order' | 'discount_applied';
+  actionType?: 'add_to_cart' | 'track_order' | 'discount_applied' | 'chaska_routed';
   actionProduct?: Product;
 }
 
-export type AppView = 'store' | 'dashboard' | 'admin' | 'portfolio';
+export type AppView = 'store' | 'chaska_ai' | 'dashboard' | 'admin' | 'portfolio';

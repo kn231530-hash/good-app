@@ -22,6 +22,7 @@ import { PortfolioProposalView } from './components/PortfolioProposalView';
 import { TasteMatchAIModal } from './components/TasteMatchAIModal';
 import { BiteBotChat } from './components/BiteBotChat';
 import { FreshOrderTracker } from './components/FreshOrderTracker';
+import { ChaskaAIRouter } from './components/ChaskaAIRouter';
 import { Currency } from './components/Currency';
 import { 
   Sparkles, 
@@ -33,12 +34,14 @@ import {
   Store,
   Bike,
   Filter,
-  Check
+  Check,
+  MapPin
 } from 'lucide-react';
 
 export default function App() {
   // Navigation View State
   const [currentView, setCurrentView] = useState<AppView>('store');
+  const [selectedRegion, setSelectedRegion] = useState<string>('Gilgit City');
 
   // Master Data State
   const [products, setProducts] = useState<Product[]>(INITIAL_PRODUCTS);
@@ -253,30 +256,38 @@ export default function App() {
                 <div className="relative z-10 max-w-xl">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold mb-3">
                     <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Next-Gen Smart Ordering • 2026</span>
+                    <span>Oderela Chaska AI • Gilgit, Gahkuch & Aliabad</span>
                   </div>
 
                   <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-                    Order Fresh. Shop Smart. Enjoy More.
+                    Order Fresh. Shop Smart. Chaska AI Powered.
                   </h1>
                   <p className="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">
-                    Fresh organic bowls, 72-hour fermented sourdough pizzas, and cold-pressed juices — matched with AI meal recommendations & live GPS tracking.
+                    Crispy Zingers, Fajita Pizzas, Chapshuro, Karak Chai & Daily Marts. Type messy messages in Roman Urdu/English or browse partner outlets across Northern Pakistan!
                   </p>
 
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <button
                       type="button"
-                      onClick={() => setIsTasteMatchOpen(true)}
+                      onClick={() => setCurrentView('chaska_ai')}
                       className="h-10 px-5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-500/30 transition-all cursor-pointer active:scale-95"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
-                      <span>Match My Nutrition with AI</span>
+                      <span>Try Chaska AI Messy Order</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setIsTasteMatchOpen(true)}
+                      className="h-10 px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center gap-1.5 border border-white/20 transition-all cursor-pointer"
+                    >
+                      <span>TasteMatch AI</span>
                     </button>
 
                     <div className="flex items-center gap-2 text-xs text-slate-300 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="font-semibold text-white">Coupon: FRESH2026</span>
-                      <span className="text-slate-400">$5 OFF</span>
+                      <span className="font-semibold text-white">Voucher: CHASKA50</span>
+                      <span className="text-emerald-300 font-bold">Rs. 50 OFF</span>
                     </div>
                   </div>
                 </div>
@@ -295,11 +306,11 @@ export default function App() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-extrabold text-emerald-400">ORDER IN MOTION</span>
+                      <span className="text-xs font-extrabold text-emerald-400">RIDER DISPATCHED</span>
                       <span className="text-xs text-slate-400 font-mono">#{activeOrders[0].id}</span>
                     </div>
                     <p className="text-xs font-semibold text-slate-200">
-                      Courier {activeOrders[0].courier.name} is on {activeOrders[0].courier.vehicle} (ETA ~{activeOrders[0].estimatedMinutes} min)
+                      Rider {activeOrders[0].courier.name} on {activeOrders[0].courier.vehicle} (ETA ~{activeOrders[0].estimatedMinutes} min) • COD Payment
                     </p>
                   </div>
                 </div>
@@ -315,13 +326,13 @@ export default function App() {
               {/* Category Rails */}
               <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
                 {[
-                  { id: 'all', label: 'All Dishes', icon: '🍽️' },
-                  { id: 'Bowls & Salads', label: 'Bowls & Salads', icon: '🥗' },
-                  { id: 'Artisanal Pizzas', label: 'Artisanal Pizzas', icon: '🍕' },
-                  { id: 'Gourmet Burgers', label: 'Gourmet Burgers', icon: '🍔' },
-                  { id: 'Smoothies & Juices', label: 'Smoothies & Juices', icon: '🥤' },
-                  { id: 'Chef Specials', label: 'Chef Specials', icon: '✨' },
-                  { id: 'Healthy Treats', label: 'Guilt-Free Treats', icon: '🥑' }
+                  { id: 'all', label: 'All Items & Outlets', icon: '🍽️' },
+                  { id: 'Zingers & Burgers', label: 'Zingers & Burgers', icon: '🍔' },
+                  { id: 'Pizzas & Deals', label: 'Pizzas & Deals', icon: '🍕' },
+                  { id: 'Fried Chicken & Wings', label: 'Fried Chicken & Wings', icon: '🍗' },
+                  { id: 'Desi & Rolls', label: 'Desi & Chapshuro Rolls', icon: '🍲' },
+                  { id: 'Marts & Beverages', label: 'Marts & Dairy', icon: '🥛' },
+                  { id: 'Bakery & Sweets', label: 'Bakery & Mithai', icon: '🧁' }
                 ].map((cat) => {
                   const isActive = selectedCategory === cat.id;
                   return (
@@ -489,12 +500,12 @@ export default function App() {
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="flex items-start gap-3.5">
                 <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-200">
-                  <Leaf className="w-5 h-5" />
+                  <Store className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-sm text-[#0F172A]">Certified Organic Produce</h4>
+                  <h4 className="font-extrabold text-sm text-[#0F172A]">Top Outlets & Marts</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    Zero chemical preservatives or synthetic additives. Sourced straight from local regenerative farms.
+                    Local favorites across Gilgit City, Gahkuch, Aliabad & Skardu — Zingers, Pizzas, Chapshuro & Mart goods.
                   </p>
                 </div>
               </div>
@@ -504,9 +515,9 @@ export default function App() {
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-sm text-[#0F172A]">AI TasteMatch Guidance</h4>
+                  <h4 className="font-extrabold text-sm text-[#0F172A]">Chaska AI Messy Router</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    Personalized algorithmic nutrition that aligns with your calorie budget, macros, and cravings.
+                    Type unstructured Roman Urdu or English messages ("2 zinger or loaded fries"). Our AI maps items directly to cart.
                   </p>
                 </div>
               </div>
@@ -516,15 +527,26 @@ export default function App() {
                   <Bike className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-sm text-[#0F172A]">Eco-Electric Rapid Fleet</h4>
+                  <h4 className="font-extrabold text-sm text-[#0F172A]">Cash on Delivery (COD)</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    Zero-emission electric delivery scooters equipped with temperature-calibrated thermal pods.
+                    Reliable motorbike dispatch right to your doorstep with live rider status and cash payment on arrival.
                   </p>
                 </div>
               </div>
             </div>
 
           </div>
+        )}
+
+        {/* VIEW: CHASKA AI ROUTER (oderela.com/chaska) */}
+        {currentView === 'chaska_ai' && (
+          <ChaskaAIRouter
+            products={products}
+            onAddToCart={handleAddToCart}
+            onOpenCart={() => setIsCartOpen(true)}
+            selectedRegion={selectedRegion}
+            onSelectRegion={setSelectedRegion}
+          />
         )}
 
         {/* VIEW 2: CUSTOMER DASHBOARD */}
@@ -566,8 +588,8 @@ export default function App() {
 
       </main>
 
-      {/* Floating Bottom Cart Bar if items in cart and on store view */}
-      {cart.length > 0 && currentView === 'store' && (
+      {/* Floating Bottom Cart Bar if items in cart and on store or chaska view */}
+      {cart.length > 0 && (currentView === 'store' || currentView === 'chaska_ai') && (
         <div className="fixed bottom-4 left-4 right-4 z-40 max-w-lg mx-auto animate-bounce-in">
           <button
             type="button"
@@ -639,16 +661,16 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xs">
-              FB
+              OC
             </div>
-            <span className="font-bold text-[#0F172A] text-sm">Fresh Bite</span>
+            <span className="font-bold text-[#0F172A] text-sm">Oderela Chaska × Fresh Bite</span>
             <span className="text-slate-400">| Smart Food Ordering & Online Store (2026)</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-500">
-            <span>Tagline: <em>Order fresh. Shop smart. Enjoy more.</em></span>
+            <span>Powered by <strong>Chaska AI Messy Router</strong></span>
             <span>•</span>
-            <span className="text-emerald-700 font-bold">100% Organic & Calorie Tracked</span>
+            <span className="text-emerald-700 font-bold">Cash on Delivery Across Gilgit-Baltistan</span>
           </div>
         </div>
       </footer>

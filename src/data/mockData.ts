@@ -1,354 +1,392 @@
 import { Product, CustomerProfile, Order, CourierInfo } from '../types';
 
+export const REGIONS = [
+  { id: 'gilgit', name: 'Gilgit City', subareas: 'Jutial, Cantt, NLI Market, Khomer, Chinar Bagh', eta: '20-30 min' },
+  { id: 'gahkuch', name: 'Gahkuch', subareas: 'Main Bazaar, River Link Road, District Complex', eta: '25-35 min' },
+  { id: 'aliabad', name: 'Aliabad & Hunza', subareas: 'Karimabad, Eagle Nest Link, Ganish, Nagar Turn', eta: '30-40 min' },
+  { id: 'skardu', name: 'Skardu Town', subareas: 'Yadgar Chowk, Airport Road, Kharpocho Base', eta: '30-45 min' }
+];
+
 export const INITIAL_PRODUCTS: Product[] = [
   {
-    id: 'prod-1',
-    name: 'Wild Salmon & Quinoa Glow Bowl',
-    tagline: 'Omega-rich wild caught salmon with roasted sweet potatoes & avocado',
-    description: 'Pan-seared Alaskan wild salmon fillets resting over tri-color Andean quinoa, diced Hass avocados, massaged kale, edamame, and toasted sesame ginger vinaigrette.',
-    category: 'Bowls & Salads',
-    price: 16.50,
-    originalPrice: 19.00,
-    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
-    rating: 4.95,
-    reviewsCount: 342,
-    calories: 520,
-    protein: 38,
-    prepTime: '15-20 min',
-    isOrganic: true,
-    isVegan: false,
-    isGlutenFree: true,
-    isBestSeller: true,
-    isChefSpecial: true,
-    inStock: true,
-    stockCount: 24,
-    tags: ['High Protein', 'Gluten Free', 'Omega 3', 'Superfood'],
-    customizationOptions: {
-      sizes: [
-        { name: 'Standard Regular Bowl (450g)', priceDelta: 0 },
-        { name: 'Power Feast Double Salmon (650g)', priceDelta: 6.00 }
-      ],
-      spiceLevels: ['Mellow Mild', 'Spicy Jalapeño Kick', 'Sriracha Glazed'],
-      additions: [
-        { id: 'add-1', name: 'Extra Half Hass Avocado', price: 2.50 },
-        { id: 'add-2', name: 'Organic Soft Boiled Egg', price: 1.80 },
-        { id: 'add-3', name: 'Crispy Garlic Chickpea Crunch', price: 1.20 }
-      ],
-      dressing: ['Sesame Ginger Vinaigrette', 'Creamy Tahini Lemon', 'Green Goddess Basil']
-    }
-  },
-  {
-    id: 'prod-2',
-    name: 'Truffle Mushroom Smash Burger',
-    tagline: 'Grass-fed wagyu blend with black truffle aioli & aged Gruyère',
-    description: 'Double smashed grass-fed beef patties with caramelized wild forest mushrooms, melted cave-aged Gruyère, baby arugula, and black truffle reduction on a toasted artisanal brioche bun.',
-    category: 'Gourmet Burgers',
-    price: 15.80,
-    originalPrice: 17.50,
+    id: 'chaska-1',
+    name: 'Chaska Crispy Zinger Burger',
+    localName: 'چسکہ کرسپی زنگر برگر',
+    tagline: 'Whole breast fillet coated in crunchy 11-spice crust with spicy garlic mayo',
+    description: 'Golden crunchy marinated chicken thigh, fresh crunchy iceberg lettuce, spicy signature Chaska sauce, served in toasted sesame artisanal brioche.',
+    category: 'Zingers & Burgers',
+    price: 450,
+    originalPrice: 550,
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
-    rating: 4.92,
-    reviewsCount: 480,
-    calories: 740,
-    protein: 44,
-    prepTime: '18-22 min',
-    isOrganic: true,
-    isVegan: false,
-    isGlutenFree: false,
-    isBestSeller: true,
-    isChefSpecial: false,
-    inStock: true,
-    stockCount: 18,
-    tags: ['Grass-fed', 'Artisanal Brioche', 'Chef Favorite'],
-    customizationOptions: {
-      sizes: [
-        { name: 'Single Double-Patty', priceDelta: 0 },
-        { name: 'Triple Monster Stack', priceDelta: 4.50 }
-      ],
-      additions: [
-        { id: 'add-4', name: 'Smoked Applewood Bacon', price: 2.80 },
-        { id: 'add-5', name: 'House Pickled Jalapeños', price: 1.00 },
-        { id: 'add-6', name: 'Side of Truffle Parmesan Fries', price: 4.50 }
-      ]
-    }
-  },
-  {
-    id: 'prod-3',
-    name: 'Wood-Fired Burrata & Prosciutto Pizza',
-    tagline: 'San Marzano DOP, creamy burrata ball, aged prosciutto & hot honey',
-    description: 'Naturally leavened 72-hour sourdough crust baked at 900°F with organic San Marzano tomatoes, fresh buffalo mozzarella, fresh Italian burrata, 24-month prosciutto di Parma, and hot chili blossom honey.',
-    category: 'Artisanal Pizzas',
-    price: 18.20,
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
-    rating: 4.98,
-    reviewsCount: 520,
-    calories: 890,
-    protein: 36,
-    prepTime: '20-25 min',
-    isOrganic: true,
-    isVegan: false,
-    isGlutenFree: false,
+    rating: 4.94,
+    reviewsCount: 620,
+    calories: 620,
+    protein: 34,
+    prepTime: '15-20 min',
+    outletName: 'Chaska Fast Food Hub (Jutial)',
+    isHalal: true,
     isBestSeller: true,
     isChefSpecial: true,
     inStock: true,
-    stockCount: 15,
-    tags: ['72-hr Sourdough', 'Italian Burrata', 'Hot Honey'],
+    stockCount: 45,
+    dealBadge: 'Top Chaska Pick',
+    tags: ['Zinger', 'Crispy Chicken', 'Spicy', 'Gilgit Favorite'],
     customizationOptions: {
       sizes: [
-        { name: '12-inch Classic (Serves 1-2)', priceDelta: 0 },
-        { name: '16-inch Family Share (Serves 3-4)', priceDelta: 7.00 }
+        { name: 'Standard Crispy Zinger', priceDelta: 0 },
+        { name: 'Double Decker Zinger Tower', priceDelta: 220 }
       ],
+      spiceLevels: ['Mellow Mild', 'Karakoram Spicy', 'Extra Fiery Hot'],
       additions: [
-        { id: 'add-7', name: 'Extra Fresh Burrata Ball (125g)', price: 4.00 },
-        { id: 'add-8', name: 'Wild Rocket Arugula & Shaved Parm', price: 2.00 }
+        { id: 'add-1', name: 'Cheese Slice (Aged Cheddar)', price: 60 },
+        { id: 'add-2', name: 'Extra Chaska Garlic Mayo Dip', price: 50 },
+        { id: 'add-3', name: 'Regular Salted French Fries', price: 120 }
       ]
     }
   },
   {
-    id: 'prod-4',
-    name: 'Dragonfruit Spirulina Glow Smoothie Bowl',
-    tagline: 'Antioxidant superfood smoothie bowl topped with organic berries & chia',
-    description: 'Blended organic pink pitaya (dragonfruit), blue spirulina, frozen wild bananas, mango chunks, topped with coconut flakes, chia seeds, cacao nibs, and raw mountain honey.',
-    category: 'Smoothies & Juices',
-    price: 9.80,
-    originalPrice: 11.50,
-    image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=800&q=80',
-    rating: 4.88,
-    reviewsCount: 210,
-    calories: 340,
-    protein: 14,
-    prepTime: '10-12 min',
-    isOrganic: true,
-    isVegan: true,
-    isGlutenFree: true,
-    isBestSeller: false,
+    id: 'chaska-2',
+    name: 'Chicken Fajita Sensation Pizza (Large 13")',
+    localName: 'چکن فجیتا پیزا (لارج)',
+    tagline: 'Spicy Mexican-spiced chicken chunks, onions, bell peppers & mozzarella blend',
+    description: 'Freshly stretched hand-tossed dough with zesty pizza sauce, premium mozzarella cheese, spiced chicken chunks, crisp bell peppers, sweet corn and oregano sprinkle.',
+    category: 'Pizzas & Deals',
+    price: 1450,
+    originalPrice: 1650,
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
+    rating: 4.96,
+    reviewsCount: 540,
+    calories: 1120,
+    protein: 48,
+    prepTime: '20-25 min',
+    outletName: 'Royal Crust Pizzeria (NLI Market)',
+    isHalal: true,
+    isBestSeller: true,
     isChefSpecial: false,
+    inStock: true,
+    stockCount: 25,
+    dealBadge: 'Save Rs. 200',
+    tags: ['Fajita', 'Pizza', 'Cheese Burst', 'Family Size'],
+    customizationOptions: {
+      sizes: [
+        { name: 'Regular 9" (Serves 1-2)', priceDelta: -450 },
+        { name: 'Large 13" (Serves 3-4)', priceDelta: 0 },
+        { name: 'Jumbo 16" Monster (Serves 5-6)', priceDelta: 600 }
+      ],
+      additions: [
+        { id: 'add-4', name: 'Cheese Burst Stuffed Crust', price: 250 },
+        { id: 'add-5', name: 'Extra Chicken Topping', price: 180 },
+        { id: 'add-6', name: '1.5 Litre Chilled Soft Drink', price: 220 }
+      ]
+    }
+  },
+  {
+    id: 'chaska-3',
+    name: 'Chaska Midnight Mega Deal',
+    localName: 'چسکہ مڈ نائٹ میگا ڈیل',
+    tagline: '1x Large Pizza + 2x Crispy Zingers + Loaded Fries + 1.5L Drink',
+    description: 'The ultimate late-night feast for friends and family! Includes 1 Large 13" Pizza of your choice, 2 Crispy Zinger Burgers, 1 Box of Loaded Fries, and a 1.5L soft drink.',
+    category: 'Pizzas & Deals',
+    price: 2190,
+    originalPrice: 2650,
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    rating: 4.98,
+    reviewsCount: 890,
+    calories: 2400,
+    protein: 95,
+    prepTime: '25-30 min',
+    outletName: 'Oderela Deals Central',
+    isHalal: true,
+    isBestSeller: true,
+    isChefSpecial: true,
     inStock: true,
     stockCount: 30,
-    tags: ['100% Vegan', 'Gluten Free', 'Immunity Boost', 'Antioxidants'],
-    customizationOptions: {
-      additions: [
-        { id: 'add-9', name: 'Plant-Based Vanilla Pea Protein (+20g)', price: 2.20 },
-        { id: 'add-10', name: 'Raw Almond Butter Swirl', price: 1.50 }
-      ]
-    }
+    dealBadge: 'Super Saver • 25% OFF',
+    tags: ['Mega Deal', 'Combo', 'Zingers & Pizza', 'Party Feast']
   },
   {
-    id: 'prod-5',
-    name: 'Herb-Roasted Cauliflower Shawarma Bowl',
-    tagline: 'Warm spiced spiced cauliflower with lemon tahini, pickled sumac onions & hummus',
-    description: 'Roasted golden florets with Middle Eastern zaatar and smoked cumin, creamy smooth house hummus, cucumber-tomato salad, kalamata olives, and warm sourdough flatbread.',
-    category: 'Bowls & Salads',
-    price: 13.90,
-    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
-    rating: 4.85,
-    reviewsCount: 165,
-    calories: 410,
-    protein: 16,
-    prepTime: '15 min',
-    isOrganic: true,
-    isVegan: true,
-    isGlutenFree: true,
+    id: 'chaska-4',
+    name: 'Cheesy Loaded Chicken Fries',
+    localName: 'چیزی لوڈڈ فرائز',
+    tagline: 'Crispy seasoned fries drenched in warm cheddar, chicken boti & jalapeños',
+    description: 'Crispy golden fries layered with smoky chicken chunks, signature melted liquid cheese sauce, spicy pickled jalapeños, and dusted with secret peri-peri seasoning.',
+    category: 'Zingers & Burgers',
+    price: 420,
+    originalPrice: 480,
+    image: 'https://images.unsplash.com/photo-1576107232684-1279f3908594?auto=format&fit=crop&w=800&q=80',
+    rating: 4.91,
+    reviewsCount: 380,
+    calories: 580,
+    protein: 22,
+    prepTime: '12-15 min',
+    outletName: 'Chaska Bites (Khomer)',
+    isHalal: true,
+    isBestSeller: true,
+    isChefSpecial: false,
+    inStock: true,
+    stockCount: 50,
+    dealBadge: 'Hot Snack',
+    tags: ['Fries', 'Liquid Cheese', 'Snack', 'Late Night']
+  },
+  {
+    id: 'chaska-5',
+    name: 'Crispy Fried Chicken (3 Pcs Bucket)',
+    localName: 'کرسپی فرائیڈ چکن (3 پیس)',
+    tagline: 'Deep golden crunchy crust, tender juicy chicken with garlic dip',
+    description: 'Fresh chicken drumsticks and thighs pressure-fried to golden perfection. Crisp on the outside, steaming juicy inside. Served with dinner roll & garlic sauce.',
+    category: 'Fried Chicken & Wings',
+    price: 580,
+    originalPrice: 650,
+    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80',
+    rating: 4.88,
+    reviewsCount: 290,
+    calories: 720,
+    protein: 42,
+    prepTime: '15-20 min',
+    outletName: 'Crispy Fried Hub Gilgit',
+    isHalal: true,
     isBestSeller: false,
     isChefSpecial: false,
     inStock: true,
-    stockCount: 22,
-    tags: ['Plant Based', 'Heart Healthy', 'Low Calorie'],
-    customizationOptions: {
-      spiceLevels: ['Gentle Zaatar', 'Medium Aleppo Pepper', 'Harissa Fiery Spiced'],
-      additions: [
-        { id: 'add-11', name: 'Warm Herbed Sourdough Flatbread', price: 1.90 },
-        { id: 'add-12', name: 'Marinated Feta Cubes', price: 2.00 }
-      ]
-    }
+    stockCount: 35,
+    tags: ['Fried Chicken', 'Crispy', 'Bucket']
   },
   {
-    id: 'prod-6',
-    name: 'Pan-Roasted Seabass with Lemon Caper Emulsion',
-    tagline: 'Wild Mediterranean seabass over charred asparagus & saffron risotto',
-    description: 'Crispy skin Chilean seabass fillet lightly seared with butter, white wine reduction, capers, baby heirlooms, and creamy Carnaroli saffron-infused risotto.',
-    category: 'Chef Specials',
-    price: 24.50,
-    originalPrice: 28.00,
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80',
-    rating: 4.97,
-    reviewsCount: 290,
-    calories: 610,
-    protein: 48,
-    prepTime: '25-30 min',
-    isOrganic: true,
-    isVegan: false,
-    isGlutenFree: true,
-    isBestSeller: false,
-    isChefSpecial: true,
-    inStock: true,
-    stockCount: 12,
-    tags: ['Fine Dining', 'Wild Catch', 'High Protein'],
-    customizationOptions: {
-      sizes: [
-        { name: 'Standard Fillet (220g)', priceDelta: 0 },
-        { name: 'Captain Cut (340g)', priceDelta: 8.50 }
-      ]
-    }
-  },
-  {
-    id: 'prod-7',
-    name: 'Cold-Pressed Green Radiance Juice',
-    tagline: 'Raw organic celery, cucumber, green apple, ginger, kale & lemon',
-    description: 'Cold-pressed hydraulic extracted raw juice with zero added water or sugar. 100% vital enzymes and chlorophyll for instant hydration and cellular energy.',
-    category: 'Smoothies & Juices',
-    price: 7.50,
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
-    rating: 4.91,
-    reviewsCount: 185,
-    calories: 110,
-    protein: 3,
-    prepTime: '5 min',
-    isOrganic: true,
-    isVegan: true,
-    isGlutenFree: true,
+    id: 'chaska-6',
+    name: 'Spicy Honey BBQ Wings (6 Pcs)',
+    localName: 'ہنی بی بی کیو ونگز',
+    tagline: 'Tossed in sweet mountain honey and smoky spicy BBQ glaze',
+    description: 'Fresh tender wings fried crispy and coated in thick, sticky, sweet and tangy honey glaze. Topped with toasted sesame seeds.',
+    category: 'Fried Chicken & Wings',
+    price: 420,
+    image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80',
+    rating: 4.92,
+    reviewsCount: 215,
+    calories: 460,
+    protein: 28,
+    prepTime: '15 min',
+    outletName: 'Wings & Rings Cantt',
+    isHalal: true,
     isBestSeller: true,
     isChefSpecial: false,
     inStock: true,
     stockCount: 40,
-    tags: ['Raw & Unpasteurized', 'Detox', 'No Added Sugar'],
-    customizationOptions: {
-      additions: [
-        { id: 'add-13', name: 'Raw Organic Ginger Shot', price: 1.50 },
-        { id: 'add-14', name: 'Turmeric & Cayenne Booster', price: 1.50 }
-      ]
-    }
+    tags: ['Wings', 'BBQ', 'Honey', 'Snack']
   },
   {
-    id: 'prod-8',
-    name: 'Raw Cacao & Sea Salt Avocado Mousse',
-    tagline: 'Velvety guilt-free dark chocolate mousse made with ripe avocados & maple',
-    description: 'Decadent rich dark mousse whipped with pure organic Belgian cacao, ripe Haas avocado base, organic Grade-A maple syrup, Maldon sea salt flakes, and fresh raspberries.',
-    category: 'Healthy Treats',
-    price: 8.20,
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
-    rating: 4.93,
-    reviewsCount: 228,
-    calories: 280,
-    protein: 6,
-    prepTime: '8 min',
+    id: 'chaska-7',
+    name: 'Authentic Gilgit Chapshuro (Meat Pie)',
+    localName: 'روایتی گلگتی چپشورو',
+    tagline: 'Traditional stone-baked flatbread stuffed with spiced minced meat & mountain herbs',
+    description: 'Local northern specialty! Handmade wheat dough filled with seasoned minced beef, wild mountain onions, black pepper and coriander, baked over flat iron tawa.',
+    category: 'Desi & Rolls',
+    price: 360,
+    originalPrice: 420,
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80',
+    rating: 4.98,
+    reviewsCount: 710,
+    calories: 540,
+    protein: 30,
+    prepTime: '18 min',
+    outletName: 'Karakoram Heritage Kitchen (Jutial)',
+    isHalal: true,
     isOrganic: true,
-    isVegan: true,
-    isGlutenFree: true,
-    isBestSeller: false,
+    isBestSeller: true,
     isChefSpecial: true,
     inStock: true,
+    stockCount: 50,
+    dealBadge: 'Local Heritage',
+    tags: ['Chapshuro', 'Gilgit Local', 'Desi', 'Must Try']
+  },
+  {
+    id: 'chaska-8',
+    name: 'Chicken Dum Biryani with Raita',
+    localName: 'چکن دم بریانی مع رائتہ',
+    tagline: 'Fragrant Basmati rice slow-cooked with spiced chicken pieces & golden potatoes',
+    description: 'Traditional aromatic spiced Karachi-style Biryani cooked in sealed deg with tender chicken, potatoes, saffron aroma. Served with fresh mint raita and onion rings.',
+    category: 'Desi & Rolls',
+    price: 380,
+    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
+    rating: 4.89,
+    reviewsCount: 430,
+    calories: 680,
+    protein: 36,
+    prepTime: '12-15 min',
+    outletName: 'Al-Madina Biryani Point (City Bazaar)',
+    isHalal: true,
+    isBestSeller: true,
+    isChefSpecial: false,
+    inStock: true,
+    stockCount: 60,
+    tags: ['Biryani', 'Desi', 'Chicken', 'Lunch & Dinner']
+  },
+  {
+    id: 'chaska-9',
+    name: 'Chicken Garlic Mayo Paratha Roll',
+    localName: 'چکن گارلک مایو پراٹھا رول',
+    tagline: 'Charcoal grilled chicken boti rolled in crispy flaky tawa paratha',
+    description: 'Smoky grilled chicken boti chunks rolled inside a golden flaky paratha, drizzled with garlic mayo sauce, mint chutney, and sliced onions.',
+    category: 'Desi & Rolls',
+    price: 280,
+    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
+    rating: 4.93,
+    reviewsCount: 310,
+    calories: 520,
+    protein: 26,
+    prepTime: '10-12 min',
+    outletName: 'Roll Express (Cantt Road)',
+    isHalal: true,
+    isBestSeller: true,
+    isChefSpecial: false,
+    inStock: true,
+    stockCount: 40,
+    tags: ['Paratha Roll', 'Garlic Mayo', 'Quick Bite']
+  },
+  {
+    id: 'chaska-10',
+    name: 'Fresh Dairy Farm Milk (1 Litre Bottle)',
+    localName: 'خالص بھینس کا دودھ (1 لیٹر)',
+    tagline: 'Pure, fresh, unadulterated high-fat farm milk delivered chilled',
+    description: 'Sourced daily from local northern farms. Freshly filtered, chilled, and delivered in food-grade sealed bottles. Perfect for tea and family nutrition.',
+    category: 'Marts & Beverages',
+    price: 220,
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=80',
+    rating: 4.97,
+    reviewsCount: 520,
+    calories: 640,
+    protein: 32,
+    prepTime: '10 min',
+    outletName: 'Oderela Mart (Instant Grocery)',
+    isHalal: true,
+    isOrganic: true,
+    isBestSeller: true,
+    isChefSpecial: false,
+    inStock: true,
+    stockCount: 75,
+    tags: ['Mart', 'Fresh Milk', 'Grocery', 'Essential']
+  },
+  {
+    id: 'chaska-11',
+    name: 'Karak Doodh Patti Chai & Rusks (Tea Combo)',
+    localName: 'کڑک دودھ پتی چائے اور رسک',
+    tagline: 'Brewed with cardamom, pure milk, served with 4 crispy golden bakery rusks',
+    description: 'Authentic roadside dhaba style boiled Doodh Patti tea. Piping hot in thermal cup, accompanied by crunchy bakery cake-rusks.',
+    category: 'Marts & Beverages',
+    price: 180,
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80',
+    rating: 4.95,
+    reviewsCount: 480,
+    calories: 240,
+    protein: 8,
+    prepTime: '8 min',
+    outletName: 'Chaska Chai Khana',
+    isHalal: true,
+    isBestSeller: true,
+    isChefSpecial: false,
+    inStock: true,
+    stockCount: 80,
+    tags: ['Chai', 'Tea', 'Snack', 'Evening Nashta']
+  },
+  {
+    id: 'chaska-12',
+    name: 'Fresh Bakery Cream Pastries (Box of 2)',
+    localName: 'فریش کریم پیسٹریز (2 عدد)',
+    tagline: 'Vanilla sponge layers with fresh whipped dairy cream & strawberry glaze',
+    description: 'Baked fresh every morning by local Gilgit master bakers. Light aerated sponge cake with velvety fresh cream and chocolate flakes.',
+    category: 'Bakery & Sweets',
+    price: 320,
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+    rating: 4.86,
+    reviewsCount: 195,
+    calories: 420,
+    protein: 6,
+    prepTime: '5 min',
+    outletName: 'Gilgit Royal Bakers',
+    isHalal: true,
+    isBestSeller: false,
+    isChefSpecial: false,
+    inStock: true,
     stockCount: 25,
-    tags: ['Guilt Free', 'Dairy Free', 'Refined Sugar Free'],
-    customizationOptions: {
-      additions: [
-        { id: 'add-15', name: 'Extra Organic Berry Compote', price: 1.80 }
-      ]
-    }
+    tags: ['Bakery', 'Dessert', 'Sweet']
   }
 ];
 
 export const INITIAL_COURIER: CourierInfo = {
-  name: 'Marcus Vance',
-  phone: '+1 (555) 382-9912',
-  vehicle: 'Eco-Electric Cargo Scooter (BITE-88)',
-  rating: 4.98,
+  name: 'Tariq Ali Khan',
+  phone: '+92 355 541 8920',
+  vehicle: 'Honda CD70 Mountain Rider (GB-24-9182)',
+  rating: 4.96,
   photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-  statusText: 'Navigating 4th Ave, 6 minutes away with insulated thermal pack',
-  latitude: 37.7749,
-  longitude: -122.4194
+  statusText: 'Crossing Jutial Link Bridge, 6 mins away with thermal insulated food box',
+  latitude: 35.9208,
+  longitude: 74.3144
 };
 
 export const INITIAL_ORDERS: Order[] = [
   {
-    id: 'FB-9402',
-    createdAt: '12:35 PM',
+    id: 'ODR-4912',
+    createdAt: '12:40 PM',
     status: 'out_for_delivery',
     items: [
       {
         id: 'ord-item-1',
-        product: INITIAL_PRODUCTS[0],
-        quantity: 1,
-        selectedSize: { name: 'Standard Regular Bowl (450g)', priceDelta: 0 },
-        selectedSpice: 'Spicy Jalapeño Kick',
-        selectedAdditions: [{ id: 'add-1', name: 'Extra Half Hass Avocado', price: 2.50 }],
-        selectedDressing: 'Sesame Ginger Vinaigrette',
-        unitPrice: 19.00,
-        totalPrice: 19.00
+        product: INITIAL_PRODUCTS[0], // Zinger
+        quantity: 2,
+        selectedAdditions: [{ id: 'add-1', name: 'Cheese Slice (Aged Cheddar)', price: 60 }],
+        unitPrice: 510,
+        totalPrice: 1020
       },
       {
         id: 'ord-item-2',
-        product: INITIAL_PRODUCTS[6],
+        product: INITIAL_PRODUCTS[3], // Loaded Fries
         quantity: 1,
-        selectedAdditions: [{ id: 'add-13', name: 'Raw Organic Ginger Shot', price: 1.50 }],
-        unitPrice: 9.00,
-        totalPrice: 9.00
+        selectedAdditions: [],
+        unitPrice: 420,
+        totalPrice: 420
       }
     ],
-    customerName: 'Alex Johnson',
-    customerPhone: '+1 (555) 234-8901',
-    deliveryAddress: '742 Evergreen Terrace, Suite 4B, Metro District',
-    paymentMethod: 'Apple Pay / Digital Wallet',
-    subtotal: 28.00,
-    deliveryFee: 2.99,
-    ecoPackagingFee: 0.99,
-    discount: 5.00,
-    courierTip: 4.00,
-    total: 30.98,
+    customerName: 'Kamran Shah',
+    customerPhone: '+92 355 500 8912',
+    deliveryAddress: 'House 14, Street 3, Jutial Officers Colony, Gilgit',
+    region: 'Gilgit City',
+    paymentMethod: 'Cash on Delivery (COD)',
+    subtotal: 1440,
+    deliveryFee: 120,
+    ecoPackagingFee: 30,
+    discount: 150,
+    courierTip: 80,
+    total: 1520,
     estimatedMinutes: 8,
-    courier: { ...INITIAL_COURIER }
-  },
-  {
-    id: 'FB-9388',
-    createdAt: 'Yesterday, 7:15 PM',
-    status: 'delivered',
-    items: [
-      {
-        id: 'ord-item-3',
-        product: INITIAL_PRODUCTS[1],
-        quantity: 2,
-        selectedAdditions: [{ id: 'add-6', name: 'Side of Truffle Parmesan Fries', price: 4.50 }],
-        unitPrice: 20.30,
-        totalPrice: 40.60
-      }
-    ],
-    customerName: 'Alex Johnson',
-    customerPhone: '+1 (555) 234-8901',
-    deliveryAddress: '742 Evergreen Terrace, Suite 4B, Metro District',
-    paymentMethod: 'Visa Ending in •• 4242',
-    subtotal: 40.60,
-    deliveryFee: 2.99,
-    ecoPackagingFee: 0.99,
-    discount: 0,
-    courierTip: 5.00,
-    total: 49.58,
-    estimatedMinutes: 0,
     courier: { ...INITIAL_COURIER }
   }
 ];
 
 export const INITIAL_CUSTOMER: CustomerProfile = {
   id: 'cust-101',
-  name: 'Alex Johnson',
-  email: 'alex.johnson@freshbite.app',
-  phone: '+1 (555) 234-8901',
-  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+  name: 'Kamran Shah',
+  email: 'kamran.shah@gmail.com',
+  phone: '+92 355 500 8912',
+  avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
   tier: 'Gold Gourmet',
-  loyaltyPoints: 1420,
-  calorieGoalDaily: 2200,
-  dietaryPreferences: ['High Protein', 'Gluten Conscious', 'Organic Only'],
-  favoriteProductIds: ['prod-1', 'prod-3', 'prod-7'],
+  loyaltyPoints: 1250,
+  calorieGoalDaily: 2400,
+  selectedRegion: 'Gilgit City',
+  dietaryPreferences: ['100% Halal Verified', 'Crispy Fast Food', 'Traditional Gilgit Heritage'],
+  favoriteProductIds: ['chaska-1', 'chaska-2', 'chaska-7'],
   savedAddresses: [
     {
       id: 'addr-1',
-      title: 'Home Sanctuary',
-      address: '742 Evergreen Terrace, Suite 4B, Metro District',
+      title: 'Home (Jutial)',
+      address: 'House 14, Street 3, Jutial Officers Colony',
+      region: 'Gilgit City',
       type: 'Home',
       isDefault: true
     },
     {
       id: 'addr-2',
-      title: 'Innovation Hub Office',
-      address: 'Floor 14, 500 Silicon Vista Way',
+      title: 'Office (NLI Complex)',
+      address: 'Shop 22, 2nd Floor, NLI Market Bazaar',
+      region: 'Gilgit City',
       type: 'Work',
       isDefault: false
     }
@@ -356,60 +394,74 @@ export const INITIAL_CUSTOMER: CustomerProfile = {
 };
 
 export const PROMO_VOUCHERS: { [code: string]: { discount: number; type: 'flat' | 'percent'; minOrder: number; desc: string } } = {
-  FRESH2026: { discount: 5, type: 'flat', minOrder: 25, desc: '$5 off your 2026 Fresh Bite feast' },
-  SMARTBITE: { discount: 15, type: 'percent', minOrder: 30, desc: '15% off smart nutrition orders' },
-  HEALTHY10: { discount: 3, type: 'flat', minOrder: 15, desc: '$3 off quick healthy bites' }
+  CHASKA50: { discount: 150, type: 'flat', minOrder: 800, desc: 'Rs. 150 OFF on your first Chaska order' },
+  ODERELA: { discount: 200, type: 'flat', minOrder: 1200, desc: 'Rs. 200 OFF Northern Express Delivery' },
+  ZINGER: { discount: 100, type: 'flat', minOrder: 600, desc: 'Rs. 100 OFF Zinger Meals' }
 };
 
+export const CHASKA_QUICK_PROMPTS = [
+  { text: 'Bhai 2 zinger or loaded fries mangwa do', label: '2 Zingers + Loaded Fries', icon: '🍔' },
+  { text: 'Large Fajita Pizza with drink family deal', label: 'Large Fajita Pizza Deal', icon: '🍕' },
+  { text: 'Late night snacks or crispy wings near Jutial', label: 'Spicy Honey Wings', icon: '🍗' },
+  { text: 'Chicken Biryani or cold drink for lunch', label: 'Chicken Biryani Plate', icon: '🍛' },
+  { text: 'Traditional stone-baked Gilgiti Chapshuro', label: 'Authentic Chapshuro', icon: '🫓' },
+  { text: 'Ghar k liye doodh, chai aur bakery rusks', label: 'Milk, Chai & Rusks', icon: '🫖' }
+];
+
 export const PORTFOLIO_SPECS = {
-  projectName: 'Fresh Bite — Smart Food Ordering & Online Store',
+  projectName: 'Fresh Bite — Smart Food Ordering & Online Store (Chaska AI Powered)',
   tagline: 'Order fresh. Shop smart. Enjoy more.',
   launchYear: '2026',
-  clientOrStatus: 'Interactive Development Portfolio & Project Proposal',
-  overview: `Fresh Bite is a next-generation smart food ordering platform and modern online store built to make buying food easier, faster, and smarter. Engineered from the ground up for modern consumer demands, it fuses artisanal food photography, effortless checkout UX, and real-time operations with AI-powered food recommendations, an intelligent culinary concierge chatbot, and a full administrative dashboard for restaurants and stores.`,
+  clientOrStatus: 'Production Ready Proposal & Interactive Platform',
+  overview: 'Fresh Bite is a modern smart food ordering platform and online store built to make buying food easier, faster, and smarter across Northern Pakistan. Integrated with Oderela Chaska AI for unstructured natural language messy message ordering in Roman Urdu and English, full cash-on-delivery (COD) dispatch, live order telemetry, customer dashboard, and administrative store controls.',
   coreFeatures: [
     {
-      title: 'Customer Dashboard & Personalization',
+      title: 'Customer Dashboard',
       items: [
-        'Secure profile, multi-address book management, and dietary preferences (High Protein, Vegan, Keto, Halal, Gluten-Free).',
-        'Saved favorite foods with 1-click lightning reorder.',
-        'Nutrition insights and live daily calorie/macro tracker.',
-        'Gold Gourmet loyalty rewards and order status histories.'
+        'Secure profile management, dietary preferences, and saved delivery addresses across Gilgit, Gahkuch, and Aliabad.',
+        'Saved favorite foods with 1-click instant reordering.',
+        'Order history with live GPS delivery status, rider contact, and digital COD receipts.',
+        'Daily calorie consumption and nutrition tracking progress.'
       ]
     },
     {
-      title: 'Online Food Store & Dynamic Ordering',
+      title: 'Online Food Store & Catalog',
       items: [
-        'Curated culinary catalog categorized by meal type with high-resolution editorial photography.',
-        'Comprehensive dietary & macro badges (Calories, Protein, Organic, Vegan, Gluten-Free).',
-        'Interactive dish customization modal (custom portion sizes, spice levels, add-on toppings, dressings, chef notes).',
-        'Real-time cart drawer with automatic voucher discounts, eco-packaging toggle, and contactless digital payments.'
+        'Curated menu items with HD photography, Pakistani Rupee (PKR) pricing, nutritional macros, and deal badges.',
+        'Categorized rails: Zingers & Burgers, Pizzas & Deals, Fried Chicken, Desi & Chapshuro Rolls, Marts & Dairy, Bakery.',
+        'Granular meal customization modal with portion sizing, sauces, extra cheese, and chef instructions.',
+        'Slide-over cart with instant coupon vouchers (CHASKA50, ODERELA, ZINGER) and COD checkout.'
       ]
     },
     {
-      title: 'AI Intelligence & BiteBot Assistance',
+      title: 'Admin Management Portal',
       items: [
-        'TasteMatch AI Recommender: Analyzes cravings, calorie budgets, and restrictions to generate personalized dish recommendations.',
-        'BiteBot Conversational Assistant: Live AI support chatbot that answers menu inquiries, finds dishes matching macros, checks live delivery status, and adds items directly into your basket.'
+        'Live KPI telemetry: Daily GMV, active delivery pipeline, and outlet order metrics.',
+        'Live Product Catalog Inventory: Instant in-stock toggles, inline price editing, and product creation.',
+        'Fulfillment lifecycle pipeline (Placed → Kitchen Prep → Rider Dispatched → Delivered).',
+        'Customer directory tracking spending patterns, addresses, and loyalty tier.'
       ]
     },
     {
-      title: 'Full-Featured Admin Management Portal',
+      title: 'Chaska AI Messy Message Router & BiteBot',
       items: [
-        'Real-time operations metrics: Today’s GMV, active order count, customer volume, and average ticket size.',
-        'Live Product Catalog Manager: In-stock toggles, price updates, instant product addition modal.',
-        'Order Fulfillment Pipeline: Kanban/list status updates (Placed → Kitchen Prep → Out for Delivery → Delivered).',
-        'Customer CRM directory with spend analytics and loyalty tracking.'
-      ]
-    },
-    {
-      title: 'Architecture & Tech Stack',
-      items: [
-        'Frontend: React 19 SPA + Vite + Tailwind CSS with Plus Jakarta Sans typography and mobile-first fluid responsive grid.',
-        'Backend / Data Layer: PostgreSQL / Supabase schema blueprint with real-time websocket streams, row-level security (RLS), and ACID transactions.',
-        'AI Engine: Google GenAI SDK (@google/genai) integration for natural language menu grounding and dynamic dietary parsing.',
-        'SEO & Performance: Schema.org FoodEstablishment JSON-LD structured data, OpenGraph cards, Core Web Vitals <1.2s LCP optimization.'
+        'Natural Language "Messy Message" Ordering: Type unstructured prompts in Roman Urdu/English (e.g., "bhai 2 zinger fries bhej do").',
+        'Smart outlet and dish entity extraction matching local partners with 1-click add-all-to-cart.',
+        'TasteMatch AI algorithmic meal recommendations tailored to calorie goals and budgets.',
+        'Conversational customer support assistant with live order inquiry resolution.'
       ]
     }
+  ],
+  backendStack: [
+    { name: 'PostgreSQL / Supabase', role: 'Relational data store with Row Level Security (RLS) and real-time order subscriptions.' },
+    { name: 'Node.js & Express / Vite', role: 'High-throughput server-side API proxy and optimized client SPA bundle.' },
+    { name: 'Google GenAI SDK', role: 'Advanced semantic parsing and natural language intent classification.' },
+    { name: 'Cloud Storage & CDN', role: 'Automated WebP compression with sub-second image asset delivery.' }
+  ],
+  seoArchitecture: [
+    'Schema.org FoodEstablishment & Product JSON-LD structured data for rich snippet indexing.',
+    'Pre-rendered OpenGraph and Twitter card social share metadata.',
+    'Mobile-first responsive fluid layout achieving sub-second load times.'
   ]
 };
+

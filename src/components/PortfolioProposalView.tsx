@@ -138,6 +138,15 @@ ${PORTFOLIO_SPECS.overview}
 
           <button
             type="button"
+            onClick={() => onSwitchView('chaska_ai')}
+            className="px-3.5 py-1.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center gap-1.5 border border-emerald-500/40 transition-colors"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Chaska AI Router</span>
+          </button>
+
+          <button
+            type="button"
             onClick={() => onSwitchView('store')}
             className="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold flex items-center gap-1.5 border border-white/15 transition-colors"
           >
@@ -172,7 +181,7 @@ ${PORTFOLIO_SPECS.overview}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {PORTFOLIO_SPECS.coreFeatures.map((feat, idx) => (
+          {PORTFOLIO_SPECS.coreFeatures.map((feat: { title: string; items: string[] }, idx: number) => (
             <div
               key={idx}
               className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between"
@@ -186,7 +195,7 @@ ${PORTFOLIO_SPECS.overview}
                 </div>
 
                 <ul className="space-y-2 text-xs text-slate-600 leading-relaxed">
-                  {feat.items.map((item, iIdx) => (
+                  {feat.items.map((item: string, iIdx: number) => (
                     <li key={iIdx} className="flex items-start gap-2">
                       <span className="text-emerald-600 font-bold">•</span>
                       <span>{item}</span>

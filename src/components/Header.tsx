@@ -50,18 +50,20 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap">
             <span className="inline-flex items-center gap-1 font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full text-[10px]">
-              <Sparkles className="w-3 h-3" /> Fresh Bite 2026
+              <Sparkles className="w-3 h-3 text-amber-400" /> Oderela Chaska AI
             </span>
             <span className="text-slate-300 truncate">
-              Order fresh. Shop smart. Enjoy more. • Use code <strong>FRESH2026</strong> for $5 OFF orders over $25
+              Order via Messy Messages across Gilgit, Gahkuch & Aliabad • Code: <strong>CHASKA50</strong> (Rs. 150 OFF)
             </span>
           </div>
           <div className="hidden md:flex items-center gap-4 text-[11px] text-slate-400 font-medium shrink-0">
             <span className="flex items-center gap-1 text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Real-time Kitchen & Dispatch Active
+              Express Delivery Active in Gilgit
             </span>
-            <span>Support: support@freshbite.app</span>
+            <a href="https://www.oderela.com/chaska" target="_blank" rel="noreferrer" className="hover:underline text-slate-300">
+              oderela.com/chaska
+            </a>
           </div>
         </div>
       </div>
@@ -75,20 +77,20 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => onSelectView('store')}
             className="flex items-center gap-2.5 cursor-pointer select-none group shrink-0"
           >
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
               <Leaf className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-extrabold tracking-tight text-[#0F172A]">
-                  Fresh<span className="text-emerald-600">Bite</span>
+                  Oderela<span className="text-emerald-600">Chaska</span>
                 </span>
-                <span className="text-[10px] font-extrabold uppercase tracking-wide bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded-md">
-                  Smart Store
+                <span className="text-[10px] font-extrabold uppercase tracking-wide bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded-md">
+                  چسکہ AI
                 </span>
               </div>
               <p className="text-[11px] font-medium text-slate-500 -mt-0.5 hidden sm:block">
-                Order fresh. Shop smart. Enjoy more.
+                Order via Messy Messages • Gilgit-Baltistan
               </p>
             </div>
           </div>
@@ -105,7 +107,23 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <Store className="w-3.5 h-3.5" />
-              <span>Online Store</span>
+              <span>Menu & Store</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onSelectView('chaska_ai')}
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all ${
+                currentView === 'chaska_ai'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-xs'
+                  : 'text-emerald-700 hover:text-emerald-900 bg-emerald-50/50'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Chaska AI (چسکہ)</span>
+              <span className="text-[10px] font-bold bg-amber-400 text-slate-950 px-1.5 rounded-full">
+                New
+              </span>
             </button>
 
             <button
@@ -118,7 +136,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <User className="w-3.5 h-3.5" />
-              <span>Customer Dashboard</span>
+              <span>My Dashboard</span>
               {customer.favoriteProductIds.length > 0 && (
                 <span className="w-4 h-4 rounded-full bg-slate-200 text-[10px] flex items-center justify-center font-bold">
                   {customer.favoriteProductIds.length}
@@ -237,7 +255,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile View Switcher & Mobile Search */}
         <div className="mt-2.5 flex flex-col gap-2 lg:hidden">
-          <div className="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-xl text-[11px] font-bold text-center">
+          <div className="grid grid-cols-5 gap-1 bg-slate-100 p-1 rounded-xl text-[10px] sm:text-[11px] font-bold text-center">
             <button
               type="button"
               onClick={() => onSelectView('store')}
@@ -246,6 +264,15 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               Store
+            </button>
+            <button
+              type="button"
+              onClick={() => onSelectView('chaska_ai')}
+              className={`py-1.5 rounded-lg transition-all ${
+                currentView === 'chaska_ai' ? 'bg-emerald-600 text-white shadow-xs' : 'text-emerald-700 font-extrabold'
+              }`}
+            >
+              چسکہ AI
             </button>
             <button
               type="button"
@@ -269,10 +296,10 @@ export const Header: React.FC<HeaderProps> = ({
               type="button"
               onClick={() => onSelectView('portfolio')}
               className={`py-1.5 rounded-lg transition-all ${
-                currentView === 'portfolio' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600'
+                currentView === 'portfolio' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600'
               }`}
             >
-              Portfolio
+              Specs
             </button>
           </div>
 

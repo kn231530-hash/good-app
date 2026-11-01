@@ -22,7 +22,7 @@ export const TasteMatchAIModal: React.FC<TasteMatchAIModalProps> = ({
   if (!isOpen) return null;
 
   const [goal, setGoal] = useState<'high_protein' | 'low_calorie' | 'comfort' | 'quick'>('high_protein');
-  const [maxBudget, setMaxBudget] = useState<number>(20);
+  const [maxBudget, setMaxBudget] = useState<number>(1800);
   const [veganOnly, setVeganOnly] = useState(false);
   const [glutenFreeOnly, setGlutenFreeOnly] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -33,9 +33,9 @@ export const TasteMatchAIModal: React.FC<TasteMatchAIModalProps> = ({
     if (glutenFreeOnly && !p.isGlutenFree) return false;
     if (p.price > maxBudget) return false;
 
-    if (goal === 'high_protein') return p.protein >= 30;
+    if (goal === 'high_protein') return p.protein >= 25;
     if (goal === 'low_calorie') return p.calories <= 450;
-    if (goal === 'comfort') return p.calories > 600 || p.category === 'Artisanal Pizzas' || p.category === 'Gourmet Burgers';
+    if (goal === 'comfort') return p.calories > 550 || p.category === 'Pizzas & Deals' || p.category === 'Zingers & Burgers';
     if (goal === 'quick') return parseInt(p.prepTime) <= 15;
     return true;
   });
@@ -122,13 +122,13 @@ export const TasteMatchAIModal: React.FC<TasteMatchAIModalProps> = ({
             <div>
               <div className="flex justify-between text-xs font-bold text-slate-700 mb-1">
                 <span>Max Budget:</span>
-                <span className="text-emerald-700">${maxBudget}</span>
+                <span className="text-emerald-700">Rs. {maxBudget}</span>
               </div>
               <input
                 type="range"
-                min="10"
-                max="30"
-                step="1"
+                min="300"
+                max="3000"
+                step="50"
                 value={maxBudget}
                 onChange={(e) => setMaxBudget(Number(e.target.value))}
                 className="w-full accent-emerald-600"

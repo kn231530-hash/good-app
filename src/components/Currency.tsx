@@ -27,8 +27,10 @@ export const Currency: React.FC<CurrencyProps> = ({
         strikeThrough ? 'line-through text-slate-400 font-normal' : 'text-[#0F172A]'
       } ${className}`}
     >
-      <span className="text-[0.8em] font-semibold opacity-80 mr-0.5 select-none">$</span>
-      <span>{amount.toFixed(2)}</span>
+      <span className="text-[0.78em] font-semibold opacity-75 mr-0.5 select-none text-emerald-800">
+        Rs.
+      </span>
+      <span>{Math.round(amount).toLocaleString('en-PK')}</span>
     </span>
   );
 };
