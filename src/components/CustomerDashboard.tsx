@@ -27,6 +27,8 @@ interface CustomerDashboardProps {
   onQuickReorder: (order: Order) => void;
   onOpenOrderTracker: (order: Order) => void;
   onUpdatePreferences: (prefs: string[]) => void;
+  selectedTab?: 'favorites' | 'orders' | 'nutrition' | 'addresses';
+  onTabChange?: (tab: 'favorites' | 'orders' | 'nutrition' | 'addresses') => void;
 }
 
 export const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
@@ -37,9 +39,23 @@ export const CustomerDashboard: React.FC<CustomerDashboardProps> = ({
   onToggleFavorite,
   onQuickReorder,
   onOpenOrderTracker,
-  onUpdatePreferences
+  onUpdatePreferences,
+  selectedTab,
+  onTabChange
 }) => {
-  const [activeTab, setActiveTab] = useState<'favorites' | 'orders' | 'nutrition' | 'addresses'>('favorites');
+  const [internalTab, setInternalTab] = useState<'favorites' | 'orders' | 'nutrition' | 'addresses'>(selectedTab || 'favorites');
+
+  React.useEffect(() => {
+    if (selectedTab) {
+      setInternalTab(selectedTab);
+    }
+  }, [selectedTab]);
+
+  const activeTab = selectedTab || internalTab;
+  const setActiveTab = (tab: 'favorites' | 'orders' | 'nutrition' | 'addresses') => {
+    setInternalTab(tab);
+    if (onTabChange) onTabChange(tab);
+  };
   const [newAddressTitle, setNewAddressTitle] = useState('');
   const [newAddressText, setNewAddressText] = useState('');
   const [showAddressForm, setShowAddressForm] = useState(false);

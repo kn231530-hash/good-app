@@ -13,6 +13,7 @@ import {
   OrderStatus 
 } from './types';
 import { Header } from './components/Header';
+import { BottomNav } from './components/BottomNav';
 import { ProductCard } from './components/ProductCard';
 import { ProductCustomizerModal } from './components/ProductCustomizerModal';
 import { CartDrawer } from './components/CartDrawer';
@@ -23,24 +24,23 @@ import { TasteMatchAIModal } from './components/TasteMatchAIModal';
 import { BiteBotChat } from './components/BiteBotChat';
 import { FreshOrderTracker } from './components/FreshOrderTracker';
 import { ChaskaAIRouter } from './components/ChaskaAIRouter';
+import { NotificationsDrawer } from './components/NotificationsDrawer';
+import { OffersModal } from './components/OffersModal';
+import { HelpContactModal } from './components/HelpContactModal';
+import { CategoriesModal } from './components/CategoriesModal';
 import { Currency } from './components/Currency';
 import { 
   Sparkles, 
   Flame, 
-  Leaf, 
-  ShieldCheck, 
   ArrowRight, 
-  ShoppingBag,
   Store,
-  Bike,
-  Filter,
-  Check,
-  MapPin
+  Bike
 } from 'lucide-react';
 
 export default function App() {
   // Navigation View State
   const [currentView, setCurrentView] = useState<AppView>('store');
+  const [dashboardTab, setDashboardTab] = useState<'favorites' | 'orders' | 'nutrition' | 'addresses'>('favorites');
   const [selectedRegion, setSelectedRegion] = useState<string>('Gilgit City');
 
   // Master Data State
@@ -62,9 +62,13 @@ export default function App() {
   const [customizingProduct, setCustomizingProduct] = useState<Product | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Modals
+  // Modals & Panels State
   const [isTasteMatchOpen, setIsTasteMatchOpen] = useState(false);
   const [trackingOrder, setTrackingOrder] = useState<Order | null>(null);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isOffersOpen, setIsOffersOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   // Computed Cart metrics
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -214,8 +218,44 @@ export default function App() {
 
   const activeOrders = orders.filter((o) => o.status !== 'delivered' && o.status !== 'cancelled');
 
+  // Navigation Button Handlers
+  const handleSelectHome = () => {
+    setCurrentView('store');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectExplore = () => {
+    setCurrentView('chaska_ai');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenOrders = () => {
+    setCurrentView('dashboard');
+    setDashboardTab('orders');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenFavorites = () => {
+    setCurrentView('dashboard');
+    setDashboardTab('favorites');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenProfile = () => {
+    setCurrentView('dashboard');
+    setDashboardTab('addresses');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNotificationAction = (action: string) => {
+    if (action === 'orders') handleOpenOrders();
+    else if (action === 'offers') setIsOffersOpen(true);
+    else if (action === 'profile') handleOpenProfile();
+    else if (action === 'categories') setIsCategoriesOpen(true);
+  };
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] font-['Plus_Jakarta_Sans',sans-serif] flex flex-col">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] font-['Plus_Jakarta_Sans',sans-serif] flex flex-col pb-24">
       
       {/* Header */}
       <Header
@@ -233,6 +273,13 @@ export default function App() {
           if (activeOrders.length > 0) setTrackingOrder(activeOrders[0]);
           else if (orders.length > 0) setTrackingOrder(orders[0]);
         }}
+        onOpenCategories={() => setIsCategoriesOpen(true)}
+        onOpenOrders={handleOpenOrders}
+        onOpenFavorites={handleOpenFavorites}
+        onOpenNotifications={() => setIsNotificationsOpen(true)}
+        onOpenOffers={() => setIsOffersOpen(true)}
+        onOpenHelp={() => setIsHelpOpen(true)}
+        onOpenProfile={handleOpenProfile}
       />
 
       {/* Main View Body */}
@@ -240,7 +287,7 @@ export default function App() {
         
         {/* VIEW 1: ONLINE FOOD STORE */}
         {currentView === 'store' && (
-          <div className="space-y-8 pb-20">
+          <div className="space-y-8">
             
             {/* Hero Banner */}
             {!searchQuery && (
@@ -284,11 +331,15 @@ export default function App() {
                       <span>TasteMatch AI</span>
                     </button>
 
-                    <div className="flex items-center gap-2 text-xs text-slate-300 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15">
+                    <button
+                      type="button"
+                      onClick={() => setIsOffersOpen(true)}
+                      className="flex items-center gap-2 text-xs text-slate-300 bg-white/10 hover:bg-white/20 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 transition-colors cursor-pointer"
+                    >
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span className="font-semibold text-white">Voucher: CHASKA50</span>
-                      <span className="text-emerald-300 font-bold">Rs. 50 OFF</span>
-                    </div>
+                      <span className="text-emerald-300 font-bold">Rs. 150 OFF</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -331,6 +382,7 @@ export default function App() {
                   { id: 'Pizzas & Deals', label: 'Pizzas & Deals', icon: '🍕' },
                   { id: 'Fried Chicken & Wings', label: 'Fried Chicken & Wings', icon: '🍗' },
                   { id: 'Desi & Rolls', label: 'Desi & Chapshuro Rolls', icon: '🍲' },
+                  { id: 'Bowls & Salads', label: 'Bowls & Salads', icon: '🥗' },
                   { id: 'Marts & Beverages', label: 'Marts & Dairy', icon: '🥛' },
                   { id: 'Bakery & Sweets', label: 'Bakery & Mithai', icon: '🧁' }
                 ].map((cat) => {
@@ -362,7 +414,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setFilterVegan(!filterVegan)}
-                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 ${
+                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 cursor-pointer ${
                     filterVegan
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-400 shadow-xs'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
@@ -374,7 +426,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setFilterGlutenFree(!filterGlutenFree)}
-                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 ${
+                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 cursor-pointer ${
                     filterGlutenFree
                       ? 'bg-sky-50 text-sky-700 border-sky-400 shadow-xs'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
@@ -386,7 +438,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setFilterOrganic(!filterOrganic)}
-                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 ${
+                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 cursor-pointer ${
                     filterOrganic
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-400 shadow-xs'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
@@ -398,7 +450,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setFilterHighProtein(!filterHighProtein)}
-                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 ${
+                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 cursor-pointer ${
                     filterHighProtein
                       ? 'bg-amber-50 text-amber-800 border-amber-400 shadow-xs'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
@@ -410,7 +462,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setFilterBestSeller(!filterBestSeller)}
-                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 ${
+                  className={`h-7 px-3 rounded-full text-[11px] font-bold border transition-all shrink-0 cursor-pointer ${
                     filterBestSeller
                       ? 'bg-rose-50 text-rose-700 border-rose-400 shadow-xs'
                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
@@ -429,7 +481,7 @@ export default function App() {
                       setFilterHighProtein(false);
                       setFilterBestSeller(false);
                     }}
-                    className="text-[11px] font-bold text-slate-500 hover:text-rose-600 underline ml-1 shrink-0"
+                    className="text-[11px] font-bold text-slate-500 hover:text-rose-600 underline ml-1 shrink-0 cursor-pointer"
                   >
                     Clear Filters
                   </button>
@@ -445,7 +497,7 @@ export default function App() {
                     {selectedCategory === 'all' ? 'Fresh Culinary Catalog' : selectedCategory}
                   </h2>
                   <p className="text-xs text-slate-500">
-                    Handcrafted daily with verified nutritional data
+                    Handcrafted daily with verified nutritional data & express delivery
                   </p>
                 </div>
                 <span className="text-xs font-bold text-slate-400">
@@ -469,7 +521,7 @@ export default function App() {
                       setFilterHighProtein(false);
                       setFilterBestSeller(false);
                     }}
-                    className="mt-3 text-xs font-bold text-emerald-700 hover:underline"
+                    className="mt-3 text-xs font-bold text-emerald-700 hover:underline cursor-pointer"
                   >
                     Reset all filters
                   </button>
@@ -555,6 +607,8 @@ export default function App() {
             customer={customer}
             products={products}
             orders={orders}
+            selectedTab={dashboardTab}
+            onTabChange={setDashboardTab}
             onSelectProduct={(p) => setCustomizingProduct(p)}
             onToggleFavorite={handleToggleFavorite}
             onQuickReorder={(ord) => {
@@ -587,34 +641,6 @@ export default function App() {
         )}
 
       </main>
-
-      {/* Floating Bottom Cart Bar if items in cart and on store or chaska view */}
-      {cart.length > 0 && (currentView === 'store' || currentView === 'chaska_ai') && (
-        <div className="fixed bottom-4 left-4 right-4 z-40 max-w-lg mx-auto animate-bounce-in">
-          <button
-            type="button"
-            onClick={() => setIsCartOpen(true)}
-            className="w-full h-13 px-5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full flex items-center justify-between shadow-xl shadow-emerald-700/30 border border-emerald-500 transition-all active:scale-98 cursor-pointer"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <ShoppingBag className="w-4 h-4 text-white" />
-              </div>
-              <div className="text-left">
-                <div className="text-xs font-semibold text-white/90">
-                  {cartCount} {cartCount === 1 ? 'item' : 'items'} in basket
-                </div>
-                <Currency amount={cartTotal} size="base" className="text-white" />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1.5 font-extrabold text-xs sm:text-sm bg-black/15 px-3.5 py-1.5 rounded-full">
-              <span>View Basket</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </button>
-        </div>
-      )}
 
       {/* Modals & Drawers */}
       <ProductCustomizerModal
@@ -656,8 +682,43 @@ export default function App() {
         onOpenOrderTracker={(ord) => setTrackingOrder(ord)}
       />
 
+      {/* Categories Modal */}
+      <CategoriesModal
+        isOpen={isCategoriesOpen}
+        onClose={() => setIsCategoriesOpen(false)}
+        selectedCategory={selectedCategory}
+        onSelectCategory={(cat) => {
+          setSelectedCategory(cat);
+          if (currentView !== 'store') setCurrentView('store');
+        }}
+        products={products}
+      />
+
+      {/* Offers & Vouchers Modal */}
+      <OffersModal
+        isOpen={isOffersOpen}
+        onClose={() => setIsOffersOpen(false)}
+        onApplyOffer={(code) => {
+          setIsOffersOpen(false);
+          setIsCartOpen(true);
+        }}
+      />
+
+      {/* Help & Contact Support Modal */}
+      <HelpContactModal
+        isOpen={isHelpOpen}
+        onClose={() => setIsHelpOpen(false)}
+      />
+
+      {/* Notifications Drawer */}
+      <NotificationsDrawer
+        isOpen={isNotificationsOpen}
+        onClose={() => setIsNotificationsOpen(false)}
+        onNavigateAction={handleNotificationAction}
+      />
+
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 text-slate-500 text-xs py-8 mt-auto">
+      <footer className="bg-white border-t border-slate-200 text-slate-500 text-xs py-8 mt-auto mb-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xs">
@@ -667,13 +728,64 @@ export default function App() {
             <span className="text-slate-400">| Smart Food Ordering & Online Store (2026)</span>
           </div>
 
-          <div className="flex items-center gap-4 text-slate-500">
-            <span>Powered by <strong>Chaska AI Messy Router</strong></span>
+          <div className="flex items-center gap-4 text-slate-500 flex-wrap">
+            <button 
+              type="button" 
+              onClick={handleSelectHome}
+              className="hover:text-emerald-700 cursor-pointer"
+            >
+              Home
+            </button>
+            <span>•</span>
+            <button 
+              type="button" 
+              onClick={handleSelectExplore}
+              className="hover:text-emerald-700 cursor-pointer"
+            >
+              Explore
+            </button>
+            <span>•</span>
+            <button 
+              type="button" 
+              onClick={() => setIsCategoriesOpen(true)}
+              className="hover:text-emerald-700 cursor-pointer"
+            >
+              Categories
+            </button>
+            <span>•</span>
+            <button 
+              type="button" 
+              onClick={() => setIsOffersOpen(true)}
+              className="hover:text-emerald-700 cursor-pointer"
+            >
+              Offers
+            </button>
+            <span>•</span>
+            <button 
+              type="button" 
+              onClick={() => setIsHelpOpen(true)}
+              className="hover:text-emerald-700 cursor-pointer"
+            >
+              Help & Contact
+            </button>
             <span>•</span>
             <span className="text-emerald-700 font-bold">Cash on Delivery Across Gilgit-Baltistan</span>
           </div>
         </div>
       </footer>
+
+      {/* Fixed Bottom Navigation Bar (Persistent across all pages: Home | Explore | Cart | Orders | Profile) */}
+      <BottomNav
+        currentView={currentView}
+        activeDashboardTab={dashboardTab}
+        cartCount={cartCount}
+        activeOrdersCount={activeOrders.length}
+        onSelectHome={handleSelectHome}
+        onSelectExplore={handleSelectExplore}
+        onSelectCart={() => setIsCartOpen(true)}
+        onSelectOrders={handleOpenOrders}
+        onSelectProfile={handleOpenProfile}
+      />
 
     </div>
   );
