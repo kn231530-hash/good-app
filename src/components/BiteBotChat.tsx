@@ -246,9 +246,9 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-5 right-5 z-40 bg-gradient-to-r from-[#0F172A] via-teal-900 to-emerald-800 hover:from-black hover:to-emerald-900 text-white rounded-full p-2 pr-4 sm:pr-5 flex items-center gap-2.5 shadow-2xl shadow-emerald-950/40 border border-emerald-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom))] right-3 sm:right-5 z-[60] bg-gradient-to-r from-[#0F172A] via-teal-900 to-emerald-800 hover:from-black hover:to-emerald-900 text-white rounded-full p-1.5 pr-3 sm:pr-4 flex items-center gap-2 shadow-xl shadow-emerald-950/30 border border-emerald-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
         >
-          <BiteBotLogo size="md" />
+          <BiteBotLogo size="sm" />
           <div className="text-left">
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-xs tracking-wide text-white">
@@ -265,7 +265,7 @@ export const BiteBotChat: React.FC<BiteBotChatProps> = ({
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[94vw] sm:w-96 bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[520px] max-h-[85vh] animate-scale-up">
+        <div className="fixed bottom-[calc(4.75rem+env(safe-area-inset-bottom))] right-3 sm:right-6 z-[60] w-[94vw] sm:w-96 bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[520px] max-h-[calc(100dvh-6.5rem-env(safe-area-inset-bottom))] animate-scale-up">
           {/* Header */}
           <div className="p-3.5 bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white flex items-center justify-between shrink-0 border-b border-slate-800">
             <div className="flex items-center gap-3">
