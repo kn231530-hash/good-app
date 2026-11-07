@@ -303,11 +303,11 @@ export default function App() {
                 <div className="relative z-10 max-w-xl">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold mb-3">
                     <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Oderela Chaska AI • Gilgit, Gahkuch & Aliabad</span>
+                    <span>Fresh Bite • Gilgit, Gahkuch & Aliabad</span>
                   </div>
 
                   <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
-                    Order Fresh. Shop Smart. Chaska AI Powered.
+                    Order fresh. Discover local favourites. Delivered with care.
                   </h1>
                   <p className="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed">
                     Crispy Zingers, Fajita Pizzas, Chapshuro, Karak Chai & Daily Marts. Type messy messages in Roman Urdu/English or browse partner outlets across Northern Pakistan!
@@ -320,7 +320,7 @@ export default function App() {
                       className="h-10 px-5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-500/30 transition-all cursor-pointer active:scale-95"
                     >
                       <Sparkles className="w-3.5 h-3.5" />
-                      <span>Try Chaska AI Messy Order</span>
+                      <span>Try BiteBot AI</span>
                     </button>
 
                     <button
@@ -567,7 +567,7 @@ export default function App() {
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-sm text-[#0F172A]">Chaska AI Messy Router</h4>
+                  <h4 className="font-extrabold text-sm text-[#0F172A]">BiteBot AI Assistant</h4>
                   <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                     Type unstructured Roman Urdu or English messages ("2 zinger or loaded fries"). Our AI maps items directly to cart.
                   </p>
@@ -724,7 +724,7 @@ export default function App() {
             <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xs">
               OC
             </div>
-            <span className="font-bold text-[#0F172A] text-sm">Oderela Chaska × Fresh Bite</span>
+            <span className="font-bold text-[#0F172A] text-sm">Fresh Bite</span>
             <span className="text-slate-400">| Smart Food Ordering & Online Store (2026)</span>
           </div>
 
