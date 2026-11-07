@@ -2,10 +2,10 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --color-primary: #FF6B00;
-  --color-primary-dark: #A04100;
-  --color-primary-container: #FF6B00;
-  --color-on-primary-container: #572000;
+  --color-primary: #16A34A;
+  --color-primary-dark: #166534;
+  --color-primary-container: #16A34A;
+  --color-on-primary-container: #052E16;
   --color-chili: #E11D48;
   --color-emerald: #10B981;
   --color-emerald-deep: #006C49;
@@ -16,7 +16,7 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #F8FAFC;
+    background-color: #FFFFFF;
     color: #0F172A;
   }
 }
