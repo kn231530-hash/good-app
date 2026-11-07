@@ -283,7 +283,7 @@ export default function App() {
       />
 
       {/* Main View Body */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
+      <main className="flex-1 max-w-7xl mx-auto w-full min-w-0 px-3 sm:px-6 py-4 sm:py-6">
         
         {/* VIEW 1: ONLINE FOOD STORE */}
         {currentView === 'store' && (
@@ -349,7 +349,7 @@ export default function App() {
             {activeOrders.length > 0 && (
               <div
                 onClick={() => setTrackingOrder(activeOrders[0])}
-                className="p-3.5 bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white rounded-2xl flex items-center justify-between cursor-pointer shadow-md hover:shadow-lg transition-all"
+                className="p-3.5 bg-gradient-to-r from-[#0F172A] to-[#1E293B] text-white rounded-2xl flex flex-wrap items-center justify-between gap-3 cursor-pointer shadow-md hover:shadow-lg transition-all"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center animate-pulse">
@@ -491,7 +491,7 @@ export default function App() {
 
             {/* Products Grid */}
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex flex-wrap items-end justify-between gap-2 mb-4">
                 <div>
                   <h2 className="text-lg sm:text-xl font-extrabold text-[#0F172A] tracking-tight">
                     {selectedCategory === 'all' ? 'Fresh Culinary Catalog' : selectedCategory}
