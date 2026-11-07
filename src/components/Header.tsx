@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap">
             <span className="inline-flex items-center gap-1 font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full text-[10px]">
-              <Sparkles className="w-3 h-3 text-amber-400" /> Oderela Chaska AI
+              <Sparkles className="w-3 h-3 text-amber-400" /> Fresh Bite
             </span>
             <span className="text-slate-300 truncate">
               Order via Messy Messages across Gilgit, Gahkuch & Aliabad • Code: <strong>CHASKA50</strong> (Rs. 150 OFF)
@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div 
             onClick={() => onSelectView('store')}
             className="flex items-center gap-2.5 cursor-pointer select-none group shrink-0"
-            title="Fresh Bite & Oderela Chaska Home"
+            title="Fresh Bite Home"
           >
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-600 to-amber-500 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
               <Leaf className="w-5 h-5 text-white" />
@@ -112,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-extrabold tracking-tight text-[#0F172A]">
-                  Oderela<span className="text-emerald-600">Chaska</span>
+                  Fresh <span className="text-emerald-600">Bite</span>
                 </span>
                 <span className="text-[10px] font-extrabold uppercase tracking-wide bg-amber-100 text-amber-900 px-1.5 py-0.2 rounded-md">
                   چسکہ AI
